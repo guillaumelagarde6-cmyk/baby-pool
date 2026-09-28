@@ -136,25 +136,14 @@ select {
 input[type="date"],
 input[type="time"] {
 
-    width: 100%;
-
-    padding: 14px;
-
-    border: 2px solid #f3d8e3;
-
-    border-radius: 12px;
-
-    background: #fffafb;
-
-    font-size: 16px;
-
-    box-sizing: border-box;
+    height: 72px;
 
     -webkit-appearance: none;
 
     appearance: none;
 
 }
+
 
 input[type="date"],
 input[type="time"] {
