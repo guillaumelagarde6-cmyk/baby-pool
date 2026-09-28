@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Baby Pool - Petite sœur de Léandre</title>
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+        <header class="hero">
+
+            <div class="hero-content">
+
+                <h1>✨ ⭐  🎀 Baby Pool 🎀  ⭐ ✨</h1>
+
+                <h2>
+                    La petite sœur de Léandre arrive bientôt...
+                </h2>
+
+                <p>
+                    Qui trouvera la bonne date, le bon prénom,
+                    le bon poids et la bonne taille ?
+                </p>
+
+                <div class="cadeaux">
+                    🏆 Les meilleurs pronostics recevront une petite surprise !
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <footer class="containerFooter">
+                                                <div class="onglets-container">
+                                                    <button
+                                                        id="ongletTendance"
+                                                        class="onglet-action">
+
+                                                         📊 Tendances
+
+                                                    </button>
+                                                    <button
+                                                        id="ongletLivreDor"
+                                                        class="onglet-action">
+
+                                                        💕 Livre d'or
+
+                                                    </button>
+
+                                                </div>
+
+            <!-- ===================== -->
+            <!-- TENDANCES -->
+            <!-- ===================== -->
+        
+            <div id="tendances" class="card tendances">
+                <button
+                    type="button"
+                    id="ouvrirFormulaire"
+                    class="bouton-participer">
+                    ✨ Je participe
+                </button>
+
+                <h3 class="separateur-tendances">
+                📊 Les tendances en direct
+                </h3>
+
+                <p class="tendance-intro">
+                    Découvrez les tendances qui se dégagent au fur et à mesure des participations.
+                </p>
+
+                <div class="compteur-pronostics">
+
+                    <span id="nbPronostics">0</span>
+
+                    <small>participant(s)</small>
+
+                </div>
+                <div id="tendancesContainer">
+
+                    <div class="tendance-grid-2">
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">🎀</span>
+                                <span class="label">Prénom favori</span>
+                            </div>
+
+                            <div id="tendancePrenom" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">🕒</span>
+                                <span class="label">Moment favori</span>
+                            </div>
+
+                            <div id="tendanceHeure" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">⚖️</span>
+                                <span class="label">Poids favori</span>
+                            </div>
+
+                            <div id="tendancePoids" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">📏</span>
+                                <span class="label">Taille favorite</span>
+                            </div>
+
+                            <div id="tendanceTaille" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">💇</span>
+                                <span class="label">Cheveux favoris</span>
+                            </div>
+
+                            <div id="tendanceCheveux" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">👶</span>
+                                <span class="label">Ressemblance favorite</span>
+                            </div>
+
+                            <div id="tendanceRessemblance" class="valeur valeur-chargement">
+                                Chargement...
+                            </div>
+
+                        </div>
+                    </div> <!-- tendance-grid-2 -->
+                </div> <!-- tendancesContainer -->
+            </div> <!-- tendances -->
+       
+            <!-- LIVRE D'OR -->
+                <div
+                    id="containerLivreDor"
+                    class="card tendances">
+
+                    <h3>💕 Livre d'or 💕</h3>
+
+                    <p class="tendance-intro">
+                        Les messages laissés par la famille et les amis seront dévoilés plus tard... 🎀
+                    </p>
+
+                    <div id="listeLivreDor">
+
+                    </div>
+
+                </div>
+        </footer>    
+    
+        <div class="signature-site">
+            © 2026 Guillaume Lagarde • Tous droits réservés • Baby Pool fait avec amour 🎀
+        </div>
+    
+        <!-- ===================== -->
+        <!-- POPUP FORMULAIRE -->
+        <!-- ===================== -->
+
+     <div id="popupFormulaire" class="formulaire-overlay">
+
+        <div class="formulaire-popup">
+
+            <div class="formulaire-popup-header">
+
+                <h3>🎀 Mon pronostic 🎀</h3>
+
+                <button
+                    type="button"
+                    id="fermerFormulaire"
+                    class="formulaire-fermer"
+                    aria-label="Fermer le formulaire">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <div class="formulaire-popup-body">
+
+                <form id="babyForm">
+
+                    <label>Je suis</label>
+
+                    <input
+                        type="text"
+                        id="joueur"
+                        placeholder="Ex : Tata Sophie"
+                        required>
+
+                    <label>Je pense que son prénom sera</label>
+
+                    <input
+                        type="text"
+                        id="prenom"
+                        placeholder="Mon idée..."
+                        required>
+
+                    <div class="row">
+
+                        <div>
+
+                            <label>Date de naissance</label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                required>
+
+                        </div>
+
+                        <div>
+
+                            <label>Heure</label>
+
+                            <input
+                                type="time"
+                                id="heure"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div>
+
+                            <label>Poids (g)</label>
+
+                            <input
+                                type="number"
+                                id="poids"
+                                placeholder="3400"
+                                required>
+
+                        </div>
+
+                        <div>
+
+                            <label>Taille (cm)</label>
+
+                            <input
+                                type="number"
+                                id="taille"
+                                placeholder="50"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div>
+
+                            <label>Couleur des cheveux</label>
+
+                            <select id="cheveux" required>
+
+                                <option value="">Choisir...</option>
+                                <option>Blond</option>
+                                <option>Brun</option>
+                                <option>Noir</option>
+                                <option>Roux</option>
+                                <option>Pas de cheveux 😆</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label>Ressemblance</label>
+
+                            <select id="ressemblance" required>
+
+                                <option value="">Choisir...</option>
+                                <option>Plutôt Papa 👨</option>
+                                <option>Plutôt Maman 👩</option>
+                                <option>50 / 50 🤝</option>
+                                <option>Comme Léandre 👦</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div id="loaderFormulaire" class="loader-formulaire">
+
+                        <div class="spinner"></div>
+
+                        <span>Enregistrement du pronostic...</span>
+
+                    </div>
+                    <label>Un petit mot pour bébé 💕</label>
+                        <textarea
+                        id="motBebe"
+                        maxlength="300"
+                        placeholder="Les messages seront ajoutés au livre d'or souvenir de bébé 💕"></textarea>
+                    <div id="compteurMotBebe" class="compteur-mot-bebe">
+                        0 / 300 caractères
+                    </div>   
+                    
+                        <button type="submit">
+                            ✨ Envoyer ✨
+                        </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+     </div>
+        <!-- ===================== -->
+        <!-- POPUP -->
+        <!-- ===================== -->
+
+        <div id="popup" class="popup-overlay">
+
+            <div class="popup-content">
+
+                <div id="popupIcon" class="popup-icon">
+                    ✅
+                </div>
+
+                <h3 id="popupTitle">
+                    Succès
+                </h3>
+
+                <p id="popupMessage">
+                    Votre pronostic a bien été enregistré.
+                </p>
+
+                <button
+                    type="button"
+                    id="popupClose"
+                    class="popup-button">
+
+                    Fermer
+
+                </button>
+
+            </div>
+
+        </div>
+
+<div id="popupCodeLivreDor" class="popup-overlay">
+
+    <div class="popup-content">
+<div class="formulaire-popup-header">
+
+    <h3>💕 Livre d'or 💕</h3>
+
+    <button
+        type="button"
+        id="fermerLivreDor"
+        class="formulaire-fermer">
+
+        ×
+
+    </button>
+
+</div>
+
+
+        <p>
+            Le livre d'or sera disponible plus tard...
+        </p>
+       
+        <input
+            type="password"
+            id="codeLivreDor"
+            placeholder="Mot de passe">
+
+        <button
+            id="validerCodeLivreDor">
+
+            Accéder
+
+        </button>
+
+    </div>
+
+</div>
+
+
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
