@@ -132,6 +132,20 @@ select {
 
     font-size: 16px;
 }
+input[type="date"],
+input[type="time"] {
+
+    height: 70px;
+
+    min-height: 70px;
+
+    padding: 0 20px;
+
+    font-size: 1.1rem;
+
+    box-sizing: border-box;
+
+}
 
 input:focus,
 select:focus {
