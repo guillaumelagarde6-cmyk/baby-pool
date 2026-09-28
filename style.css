@@ -1002,3 +1002,15 @@ button:hover.onglet-action {
     color: #555;
 }
 
+
+.onglets-container {
+
+    pointer-events: none;
+
+}
+
+.onglet-action {
+
+    pointer-events: auto;
+
+}
