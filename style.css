@@ -145,13 +145,6 @@ input[type="time"] {
 }
 
 
-input[type="date"],
-input[type="time"] {
-
-    background:red !important;
-
-}
-
 
 input:focus,
 select:focus {
