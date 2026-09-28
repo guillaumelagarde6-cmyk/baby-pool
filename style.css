@@ -135,9 +135,9 @@ select {
 input[type="date"],
 input[type="time"] {
 
-    height: 70px;
+    height: 70px !important;
 
-    min-height: 70px;
+    min-height: 70px !important;
 
     padding: 0 20px;
 
@@ -146,6 +146,13 @@ input[type="time"] {
     box-sizing: border-box;
 
 }
+input[type="date"],
+input[type="time"] {
+
+    background:red !important;
+
+}
+
 
 input:focus,
 select:focus {
