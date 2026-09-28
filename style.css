@@ -32,7 +32,7 @@ body {
     font-size: 3rem;
 
     color: #b85d82;
-
+    white-space: nowrap;
     font-weight: 800;
 }
 
