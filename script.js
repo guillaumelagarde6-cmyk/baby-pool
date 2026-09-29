@@ -291,7 +291,7 @@ async function chargerTendances() {
                             </div>
 
                             <div class="box-tendance">
-                                <div class="emoji">🖤</div>
+                                <div class="emoji">💇</div>
                                 <div class="label">${message.cheveux}</div>
                             </div>
                         </div>
