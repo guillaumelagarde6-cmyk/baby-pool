@@ -255,13 +255,14 @@ async function chargerTendances() {
            
             listeLivreDor.innerHTML += `
 
+                <div class="message-livre-dor">
+               
                     <div class="message-auteur">
 
                         ${message.auteur}
 
                     </div>
 
-                <div class="message-livre-dor">
                             <div class="tendances-grid">
 
                             <div class="box-tendance">
