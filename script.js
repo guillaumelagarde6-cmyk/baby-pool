@@ -252,16 +252,49 @@ async function chargerTendances() {
             document.getElementById("listeLivreDor");
          listeLivreDor.innerHTML = "";   
          stats.messagesBebe.forEach(function(message) {
-
+           
             listeLivreDor.innerHTML += `
-
-                <div class="message-livre-dor">
 
                     <div class="message-auteur">
 
                         ${message.auteur}
 
                     </div>
+
+                <div class="message-livre-dor">
+                            <div class="tendances-grid">
+
+                            <div class="box-tendance">
+                                <div class="emoji">💖</div>
+                                <div class="label">${message.prenom}</div>            
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">📅</div>
+                                <div class="label">${message.date}</div>           
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">⏰</div>
+                                <div class="label">${message.heure}</div>         
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">⚖️</div>
+                                <div class="label">${message.poids}</div>   
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">📏</div>
+                                <div class="label">${message.taille}</div>
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">🖤</div>
+                                <div class="label">${message.cheveux}</div>
+                            </div>
+                        </div>
+
 
                     <div class="message-texte">
 

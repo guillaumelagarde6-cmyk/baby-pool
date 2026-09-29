@@ -1093,9 +1093,22 @@ margin-bottom: 0px;
 }
 }
 
-
-
-
+.message-livre-dor .box-tendance .label{
+    font-size: 0.8rem;
+}
+.message-livre-dor .box-tendance .emoji{
+    font-size: 1rem;
+    margin-bottom: 0px;
+}
+@media (max-width: 768px) {
+.message-livre-dor .box-tendance .label{
+    font-size: 0.8rem;
+}
+.message-livre-dor .box-tendance .emoji{
+    font-size: 1rem;
+    margin-bottom: 0px;
+}
+}
 
 .containerPhoto {
     position:relative;
