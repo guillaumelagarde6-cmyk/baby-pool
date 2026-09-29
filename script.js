@@ -297,6 +297,29 @@ async function chargerTendances() {
                         </div>
 
 
+
+                           <div class="tendances-grid">
+
+                            <div>
+                                <div class="emoji">💖</div>
+                                <div class="label">${message.prenom}</div>            
+                            </div>
+
+                            <div>
+                                <div class="emoji">📅</div>
+                                <div class="label">${message.date}</div>           
+                            </div>
+                           </div>
+
+
+
+
+
+
+
+
+
+
                     <div class="message-texte">
 
                         ${message.message}
