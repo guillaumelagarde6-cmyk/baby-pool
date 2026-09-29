@@ -331,14 +331,15 @@ function formatValeurTendance(valeur) {
     return valeur;
 }
 
-
 // ======================
-// LIVRE D'OR
+// ONGLETS
 // ======================
-
 
 const ongletLivreDor =
     document.getElementById("ongletLivreDor");
+
+const ongletClassement =
+    document.getElementById("ongletClassement");
 
 const tendances =
     document.getElementById("tendances");
@@ -346,14 +347,64 @@ const tendances =
 const containerLivreDor =
     document.getElementById("containerLivreDor");
 
- const ongletTendance =
+const containerClassement =
+    document.getElementById("containerClassement");
+
+const ongletTendance =
     document.getElementById("ongletTendance");
 
+
+// ======================
 // ETAT INITIAL
+// ======================
+
 ongletTendance.classList.add("onglet-inactif");
+
 ongletLivreDor.classList.add("onglet-actif");
 
-// ETAT CLICK
+ongletClassement.classList.add("onglet-actif");
+
+tendances.style.display = "block";
+
+containerLivreDor.style.display = "none";
+
+containerClassement.style.display = "none";
+
+
+// ======================
+// ONGLET CLASSEMENT
+// ======================
+
+ongletClassement.addEventListener(
+    "click",
+    function () {
+
+        tendances.style.display =
+            "none";
+
+        containerLivreDor.style.display =
+            "none";
+
+        containerClassement.style.display =
+            "block";
+
+        ongletTendance.classList.add("onglet-actif");
+        ongletTendance.classList.remove("onglet-inactif");
+
+        ongletLivreDor.classList.add("onglet-actif");
+        ongletLivreDor.classList.remove("onglet-inactif");
+
+        ongletClassement.classList.add("onglet-inactif");
+        ongletClassement.classList.remove("onglet-actif");
+
+    }
+);
+
+
+// ======================
+// ONGLET LIVRE D'OR
+// ======================
+
 ongletLivreDor.addEventListener(
     "click",
     function () {
@@ -364,6 +415,7 @@ ongletLivreDor.addEventListener(
 
     }
 );
+
 document.getElementById(
     "validerCodeLivreDor"
 ).addEventListener(
@@ -391,11 +443,17 @@ document.getElementById(
         tendances.style.display =
             "none";
 
+        containerClassement.style.display =
+            "none";
+
         containerLivreDor.style.display =
             "block";
 
         ongletTendance.classList.add("onglet-actif");
         ongletTendance.classList.remove("onglet-inactif");
+
+        ongletClassement.classList.add("onglet-actif");
+        ongletClassement.classList.remove("onglet-inactif");
 
         ongletLivreDor.classList.add("onglet-inactif");
         ongletLivreDor.classList.remove("onglet-actif");
@@ -403,6 +461,10 @@ document.getElementById(
     }
 );
 
+
+// ======================
+// ONGLET TENDANCES
+// ======================
 
 ongletTendance.addEventListener(
     "click",
@@ -413,15 +475,27 @@ ongletTendance.addEventListener(
 
         containerLivreDor.style.display =
             "none";
+
+        containerClassement.style.display =
+            "none";
+
         ongletLivreDor.classList.add("onglet-actif");
         ongletLivreDor.classList.remove("onglet-inactif");
+
+        ongletClassement.classList.add("onglet-actif");
+        ongletClassement.classList.remove("onglet-inactif");
 
         ongletTendance.classList.add("onglet-inactif");
         ongletTendance.classList.remove("onglet-actif");
 
     }
-
 );
+
+
+// ======================
+// POPUP LIVRE D'OR
+// ======================
+
 const boutonFermerLivreDor =
     document.getElementById("fermerLivreDor");
 
@@ -437,6 +511,7 @@ boutonFermerLivreDor.addEventListener(
 
     }
 );
+
 popupLivreDor.addEventListener(
     "click",
     function (e) {
@@ -444,6 +519,48 @@ popupLivreDor.addEventListener(
         if (e.target === popupLivreDor) {
 
             popupLivreDor.style.display =
+                "none";
+
+        }
+
+    }
+);
+const btnInfoClassement =
+    document.getElementById("btnInfoClassement");
+
+const popupClassement =
+    document.getElementById("popupClassement");
+
+const fermerPopupClassement =
+    document.getElementById("fermerPopupClassement");
+
+btnInfoClassement.addEventListener(
+    "click",
+    function () {
+
+        popupClassement.style.display =
+            "flex";
+
+    }
+);
+
+fermerPopupClassement.addEventListener(
+    "click",
+    function () {
+
+        popupClassement.style.display =
+            "none";
+
+    }
+);
+
+popupClassement.addEventListener(
+    "click",
+    function (e) {
+
+        if (e.target === popupClassement) {
+
+            popupClassement.style.display =
                 "none";
 
         }

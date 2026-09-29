@@ -696,7 +696,7 @@ select {
     display: block;
     width: fit-content;
     min-width: 220px;
-    margin: 0 auto 40px;
+    margin: 10px auto 20px;
     padding: 16px 30px;
     border: none;
     border-radius: 50px;
@@ -904,11 +904,11 @@ textarea:focus {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-bottom: -10px;
+   margin-top:-40px;
+    margin-bottom: 48px;
     margin-right: 15px;
     position: relative;
     z-index: 10;
-    
 }
 
 .onglet-action {
@@ -918,7 +918,7 @@ textarea:focus {
     width: 110px;
     height: 50px;
    margin-top: 0px;
-    padding: 16px 0px;
+    padding:0px;
     border: none;
     border-radius: 20px 20px 20px 20px;
     color: white;
@@ -960,12 +960,11 @@ button:hover.onglet-action {
 }
 
 #containerLivreDor {
-
-    display: none;
-
-   
+    display: none;  
 }
-
+#containerClassement {
+    display: none;
+}
 
 .onglet-actif {
 
@@ -1028,4 +1027,184 @@ button:hover.onglet-action {
 
     pointer-events: auto;
 
+}
+#containerLivreDor h3 {
+
+    margin-top:10px;
+
+}
+#containerClassement h3 {
+
+    margin-top:10px;
+
+}
+/* CSS POUR ONGLET CLASSEMENT */
+.tendances-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+.box-tendance {
+    background: #fffafb;
+    border: 2px solid #f3d8e3;
+    border-radius: 16px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom: 15px;
+    padding: 5px 5px;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.box-tendance .emoji {
+font-size: 2rem;
+text-align: center;
+
+}
+.box-tendance .label {
+    color: #b85d82;
+    font-size: 1.1rem;
+    font-weight: 700;
+  
+    margin-top: 5px;
+margin-bottom: 0px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+#containerClassement{
+  padding-left: 20px;
+  padding-right:20px;
+}
+.tendances-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+.box-tendance {
+    margin-bottom: 5px;
+}
+
+.box-tendance .label{
+    font-size: 0.95rem;
+}
+.box-tendance .emoji{
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+    
+}
+}
+
+
+
+
+
+.containerPhoto {
+    position:relative;
+    background: #fffafb;
+    border: 2px solid #f3d8e3;
+    border-radius: 16px;
+    margin-top: 15px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom: 15px;
+    padding: 5px 5px;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+.containerPhoto{
+    margin-top: 25px;
+}
+}
+
+.containerPhoto .box-tendance {
+    display: flex;
+    gap: 10px;
+    position:static;
+    z-index: 10; 
+    margin-top:-30px;
+    
+}
+
+.containerPhoto .box-tendance h4{
+    color: #777;
+    font-size: .9rem;
+    text-align: center;
+    margin: 5px 5px;
+}
+
+
+.btn-info{
+    width:24px;
+    height:24px;
+    display: flex;
+  justify-content: center;
+    margin:0px;  
+ align-items: center;
+  text-align: center; 
+  border-radius: 50%;
+  margin-left: 20px;
+   
+}
+.titreClassement {
+  display: flex;
+  justify-content: center;
+    margin:0px;  
+ align-items: center;
+  text-align: center; 
+}
+#popupClassement {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#popupClassement .popup-contenu {
+    position: relative;
+    background: #fffafb;
+    border-radius: 16px;
+    padding: 25px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+}
+
+#popupClassement h2 {
+    text-align: center;
+    color: #b05479;
+    margin-top: 0;
+}
+
+#popupClassement ul {
+    padding-left: 20px;
+}
+
+#popupClassement li {
+    margin-bottom: 8px;
+}
+#fermerPopupClassement .formulaire-fermer {
+  position: absolute;
+    top: 0;
+    
+}
+#fermerPopupClassement {
+  position: relative;
+    
+}
+.photo {
+
+width: 50%;
+height: auto;
+display: block;
+margin:0 auto;
+}
+.section-naissance {
+display: none;
 }

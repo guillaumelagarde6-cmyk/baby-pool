@@ -47,6 +47,13 @@
                                                          📊 Tendances
 
                                                     </button>
+                                                     <button
+                                                        id="ongletClassement"
+                                                        class="onglet-action">
+
+                                                        🏆 Classement
+
+                                                    </button>
                                                     <button
                                                         id="ongletLivreDor"
                                                         class="onglet-action">
@@ -181,6 +188,70 @@
                     </p>
 
                     <div id="listeLivreDor">
+
+                    </div>
+
+                </div>
+                 <!-- CLASSEMENT -->
+                <div
+                    id="containerClassement"
+                    class="card tendances">
+
+                    
+                    <div class="section-naissance">
+                        <h3 >👶 Notre petite princesse est arrivée !</h3>
+
+                        <div class="tendances-grid">
+
+                            <div class="box-tendance">
+                                <div class="emoji">💖</div>
+                                <div class="label">Prénom..</div>            
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">📅</div>
+                                <div class="label">Date..</div>           
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">⏰</div>
+                                <div class="label">Heure..</div>         
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">⚖️</div>
+                                <div class="label">Poids..</div>   
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">📏</div>
+                                <div class="label">Taille..</div>
+                            </div>
+
+                            <div class="box-tendance">
+                                <div class="emoji">🖤</div>
+                                <div class="label">Cheveux..</div>
+                            </div>
+                        </div>
+                        <div class="containerPhoto">
+                          
+                            <div class="box-tendance">
+                                <h4>Je ressemble le plus à</h4>
+                                <div class="label">...</div>
+                            </div>
+                           <h4>....</h4>
+                        </div>
+                    </div>
+                    <div>
+                            <img src="cigogne.gif" alt="Cigogne" class="photo">
+                            </div>
+                    <h3 class="titreClassement">🏆 Classement 🏆 <button id="btnInfoClassement" class="btn-info">?</button>
+                    </h3>
+                    <p class="tendance-intro">
+                        Le classement sera disponible plus tard... 🎀
+                    </p>
+
+                    <div id="listeClassement">
 
                     </div>
 
@@ -388,7 +459,7 @@
 <div id="popupCodeLivreDor" class="popup-overlay">
 
     <div class="popup-content">
-<div class="formulaire-popup-header">
+    <div class="formulaire-popup-header">
 
     <h3>💕 Livre d'or 💕</h3>
 
@@ -397,7 +468,7 @@
         id="fermerLivreDor"
         class="formulaire-fermer">
 
-        ×
+        x
 
     </button>
 
@@ -423,7 +494,41 @@
     </div>
 
 </div>
+<!--POP UP infos classement-->
 
+<div id="popupClassement" class="popup-overlay">
+
+    <div class="popup-contenu">
+
+        <button id="fermerPopupClassement" class="formulaire-fermer">
+            ✕
+        </button>
+
+        <h2>🏆 Règles du classement</h2>
+
+        <p>
+            Les points sont attribués selon la proximité entre votre
+            pronostic et les données réelles de naissance.
+        </p>
+
+        <ul>
+            <li>💖 Prénom exact : <strong>50 points</strong></li>
+            <li>📅 Date de naissance : <strong>jusq'à 20 points</strong></li>
+            <li>⏰ Heure de naissance : <strong>jusqu'à 50 points</strong></li>
+            <li>⚖️ Poids : <strong>jusqu'à 50 points</strong></li>
+            <li>📏 Taille : <strong>jusqu'à 40 points</strong></li>
+            <li>🖤 Cheveux : <strong>jusqu'à 20 points</strong></li>
+        </ul>
+
+        <p>
+            🤝 En cas d'égalité, les participants sont départagés
+            selon la précision de leur heure, puis du poids et enfin
+            de la taille.
+        </p>
+
+    </div>
+
+</div>
 
         <script src="script.js"></script>
 
