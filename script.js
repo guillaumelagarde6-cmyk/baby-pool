@@ -248,49 +248,119 @@ async function chargerTendances() {
 
         document.getElementById("tendanceRessemblance").innerHTML =
             formatValeurTendance(stats.ressemblanceFavorite);
+
         const listeLivreDor =
             document.getElementById("listeLivreDor");
-         listeLivreDor.innerHTML = "";   
-         stats.messagesBebe.forEach(function(message) {
+         listeLivreDor.innerHTML = ""; 
+
+         //Code pour modifier le format date & heure complète 
+                            function formatTimestamp(timestamp) {
+                        const date = new Date(timestamp);
+
+                        const dateTexte = date.toLocaleDateString("fr-FR", {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric"
+                        });
+
+                        const heureTexte = date.toLocaleTimeString("fr-FR", {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }).replace(":", "h");
+
+                        return dateTexte.charAt(0).toUpperCase() +
+                            dateTexte.slice(1) +
+                            " à " +
+                            heureTexte;
+                    }
+         
+                const messagesTries = [...stats.messagesBebe];
+                if (ordreLivreDor === "recent") {
+                    messagesTries.sort(
+                        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+                    );
+                } else {
+                    messagesTries.sort(
+                        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+                    );
+                }
+                messagesTries.forEach(function(message) {
            
             listeLivreDor.innerHTML += `
 
-                <div class="message-livre-dor">
+                <div class="message-livre-dor ${livreDorDeverrouille ? '' : 'floute'}">
                
                     <div class="message-auteur">
+                       <span> ${message.auteur} </span>
+                        <div class="tendances-grid">
 
-                        ${message.auteur}
-
-                    </div>
-
-                            <div class="tendances-grid">
-
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
                                 <div class="emoji">💖</div>
                                 <div class="label">${message.prenom}</div>            
                             </div>
 
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
                                 <div class="emoji">📅</div>
                                 <div class="label">${message.date}</div>           
                             </div>
 
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
                                 <div class="emoji">⏰</div>
                                 <div class="label">${message.heure}</div>         
                             </div>
 
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
                                 <div class="emoji">⚖️</div>
-                                <div class="label">${message.poids}</div>   
+                                <div class="label">${message.poids} g</div>   
                             </div>
 
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
                                 <div class="emoji">📏</div>
-                                <div class="label">${message.taille}</div>
+                                <div class="label">${message.taille} cm</div>
                             </div>
 
-                            <div class="box-tendance">
+                            <div class="boite-vote-message">
+                                <div class="emoji">💇</div>
+                                <div class="label">${message.cheveux}</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                       
+                    
+
+                    <div class="timestamp">${formatTimestamp(message.timestamp)} </div>
+
+                    <div class="tendances-grid-phone">
+
+                            <div class="boite-vote-message">
+                                <div class="emoji">💖</div>
+                                <div class="label">${message.prenom}</div>            
+                            </div>
+
+                            <div class="boite-vote-message">
+                                <div class="emoji">📅</div>
+                                <div class="label">${message.date}</div>           
+                            </div>
+
+                            <div class="boite-vote-message">
+                                <div class="emoji">⏰</div>
+                                <div class="label">${message.heure}</div>         
+                            </div>
+
+                            <div class="boite-vote-message">
+                                <div class="emoji">⚖️</div>
+                                <div class="label">${message.poids} g</div>   
+                            </div>
+
+                            <div class="boite-vote-message">
+                                <div class="emoji">📏</div>
+                                <div class="label">${message.taille} cm</div>
+                            </div>
+
+                            <div class="boite-vote-message">
                                 <div class="emoji">💇</div>
                                 <div class="label">${message.cheveux}</div>
                             </div>
@@ -298,28 +368,10 @@ async function chargerTendances() {
 
 
 
-                           <div class="tendances-grid">
+                    <div class="separateur"></div>
 
-                            <div>
-                                <div class="emoji">💖</div>
-                                <div class="label">${message.prenom}</div>            
-                            </div>
-
-                            <div>
-                                <div class="emoji">📅</div>
-                                <div class="label">${message.date}</div>           
-                            </div>
-                           </div>
-
-
-
-
-
-
-
-
-
-
+                         
+                       
                     <div class="message-texte">
 
                         ${message.message}
@@ -331,7 +383,31 @@ async function chargerTendances() {
             `;
 
         });
-        
+
+// ============================================
+// CLIC SUR UNE CARTE FLOUTÉE
+// ============================================
+
+listeLivreDor.addEventListener("click", function(event) {
+    if (livreDorDeverrouille) {
+        return;
+    }
+
+    const carteFloutee = event.target.closest(".message-livre-dor.floute");
+
+    if (!carteFloutee) {
+        return;
+    }
+
+    popupLivreDor.style.display = "flex";
+
+    codeLivreDor.value = "";
+
+    setTimeout(function() {
+        codeLivreDor.focus();
+    }, 100);
+
+});
     }
     catch (error) {
 
@@ -340,6 +416,23 @@ async function chargerTendances() {
     }
 
 }
+
+// Variable pour le tri 
+let ordreLivreDor = "recent"; let livreDorDeverrouille = false; let messagesBebeGlobaux = [];
+document
+    .getElementById("btnTriLivreDor")
+    .addEventListener("click", function() {
+        if (ordreLivreDor === "recent") {
+            ordreLivreDor = "ancien";
+            this.textContent = "⬆️";
+        } else {
+            ordreLivreDor = "recent";
+            this.textContent = "⬇️";
+        }
+        chargerTendances();
+    });
+
+// --------------------------
 
 chargerTendances();
 
@@ -362,7 +455,39 @@ chargerTendances();
 
   //  </div>
 
+// ANCIENNE MISE EN FORME DES BOX VOTES DANS LIVRE D'OR 
+                  //      <div class="tendances-grid">
 
+                   //         <div class="box-tendance">
+                    //            <div class="emoji">💖</div>
+                      //          <div class="label">${message.prenom}</div>            
+                        //    </div>
+
+                          //  <div class="box-tendance">
+                            //    <div class="emoji">📅</div>
+                              //  <div class="label">${message.date}</div>           
+                       //     </div>
+
+                       //     <div class="box-tendance">
+                       ///         <div class="emoji">⏰</div>
+                        //        <div class="label">${message.heure}</div>         
+                        //    </div>
+
+                       //     <div class="box-tendance">
+                       //         <div class="emoji">⚖️</div>
+                        //        <div class="label">${message.poids}</div>   
+                       //     </div>
+
+                       //     <div class="box-tendance">
+                       //         <div class="emoji">📏</div>
+                       //         <div class="label">${message.taille}</div>
+                      //      </div>
+
+                      //      <div class="box-tendance">
+                      //          <div class="emoji">💇</div>
+                      //          <div class="label">${message.cheveux}</div>
+                     //       </div>
+                     //   </div>
 
   // =================
   // Pour griser le pas de tendance
@@ -388,6 +513,34 @@ function formatValeurTendance(valeur) {
     return valeur;
 }
 
+// ======================
+// POP UP A CODE pour défloutage
+//=======================
+document.getElementById(
+    "validerCodeLivreDor"
+).addEventListener(
+    "click",
+    function () {
+
+        const code =
+            document.getElementById(
+                "codeLivreDor"
+            ).value;
+
+        if (code === "197346825") {
+            livreDorDeverrouille = true;
+            document
+                .querySelectorAll(".message-livre-dor.floute")
+                .forEach(function(card) {
+                    card.classList.remove("floute");
+                });
+
+            popupLivreDor.style.display = "none";
+
+        }
+
+    }
+);
 // ======================
 // ONGLETS
 // ======================
@@ -466,37 +619,7 @@ ongletLivreDor.addEventListener(
     "click",
     function () {
 
-        document.getElementById(
-            "popupCodeLivreDor"
-        ).style.display = "flex";
-
-    }
-);
-
-document.getElementById(
-    "validerCodeLivreDor"
-).addEventListener(
-    "click",
-    function () {
-
-        const code =
-            document.getElementById(
-                "codeLivreDor"
-            ).value;
-
-        if (code !== "197346825") {
-
-            document.getElementById(
-                "popupCodeLivreDor"
-            ).style.display = "none";
-
-            return;
-        }
-
-        document.getElementById(
-            "popupCodeLivreDor"
-        ).style.display = "none";
-
+      
         tendances.style.display =
             "none";
 

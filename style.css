@@ -252,6 +252,13 @@ button:hover {
 
     backdrop-filter: blur(8px);
 }
+@media (max-width:768px){
+ .cadeaux {
+    margin-top: 15px;
+    margin-bottom:5px;
+    padding: 14px 24px;
+}   
+}
 select {
 
     appearance: none;
@@ -851,7 +858,7 @@ body.popup-ouverte {
 
 @media (max-width: 768px) {
     .tendance-intro {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
     .entete-tendance .label {
         font-size: 0.9rem;
@@ -935,7 +942,7 @@ textarea:focus {
     gap: 8px;
     margin-bottom: 50px;
     margin-top: -30px;
-    
+    margin-right: 0px;
     }
 
     .onglet-action {
@@ -987,6 +994,8 @@ button:hover.onglet-action {
 
     color: white !important;
 }
+
+/* ===================== LVIRE D'OR ================== */
 .message-livre-dor {
 
     background: #fffafb;
@@ -998,24 +1007,211 @@ button:hover.onglet-action {
     padding: 15px;
 
     margin-bottom: 12px;
+    margin-top: 15px;
 }
 
 .message-auteur {
-
     color: #b85d82;
-
     font-weight: 700;
-
-    margin-bottom: 8px;
+    margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+/* .message-auteur span {
+  SI JE VEUX APPLIQUER DU CCS SPECIFIQUE SUR LE NOM DE LA PERSONNE 
+    }   */
 
+
+.timestamp {
+    font-size: 0.7rem;
+    color: #8f7a85;
+    font-style: italic;
+    margin: 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 .message-texte {
-
-    line-height: 1.5;
-
-    color: #555;
+    position: relative;
+    text-align: center;
+    line-height: 1.8;
+    color: #666;
+    font-style: italic;
+    padding: 10px 50px;
 }
 
+
+.message-texte::before {
+    content: "❝";
+    position: absolute;
+    left: 0;
+    top: -8px;
+    font-size: 1.8rem;
+    color: #d8b2c3;
+}
+.message-livre-dor {
+    transition: all 0.25s ease;
+}
+.message-livre-dor:hover {
+    transform: translateY(-3px);
+    background-color: #fffafb;
+    box-shadow: 0 10px 25px rgba(189, 122, 156, 0.18);
+}
+
+.message-auteur .tendances-grid {
+    display: flex;
+    flex-wrap: nowrap; /* interdit le retour à la ligne */
+    gap: 2px;
+    margin-bottom:-20px;
+    margin-left: auto; /* <-- pour que la grid commence à droite*/
+   
+}
+
+   .boite-vote-message {
+    margin-left:0px;
+    margin-right:0px;
+    margin-bottom: 0px;
+    padding: 0px 0px;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+}
+
+.boite-vote-message .emoji {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 0px;
+     width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.boite-vote-message .label {
+    
+    background: #fffafb;
+    border: 2px solid #f3d8e3;
+    border-radius: 12px;
+    padding: 5px 10px;
+    color: #b85d82;
+    font-size: 0.8rem;
+    font-weight: 700; 
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;  
+    min-width: 80px;
+    max-height: 29px;
+}
+.tendances-grid-phone {
+    display:none;
+ }   
+
+
+@media (max-width: 768px) {
+#containerLivreDor {
+    padding-left:13px;  
+    padding-right:13px;  
+}
+.message-livre-dor .message-auteur .tendances-grid {
+    display:none;
+ } 
+
+.tendances-grid-phone {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px; 
+    margin-left: auto; /* <-- pour que la grid commence à droite*/
+    margin-top: 10px;
+ } 
+ .tendances-grid-phone .boite-vote-message {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+gap: 1px;
+}
+.boite-vote-message .label{
+    font-size: 0.7rem;
+    min-width: 70px; 
+    max-height: 60px;
+    margin: 0;
+}
+.message-texte{
+    padding: 10px 15px; 
+
+}
+.message-texte::before {
+    content: "❝";
+    position: absolute;
+    left: 0;
+    top: -18px;
+    font-size: 1.6rem;
+    color: #d8b2c3;
+}
+.boite-vote-message .emoji{
+    font-size: 0.9rem;
+    margin-bottom: 0px;
+    margin: 0;
+}
+.timestamp{
+    
+    margin-top: 9px;
+}
+
+}
+
+.separateur {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 15px 0;
+}
+.separateur2 {
+    height: 1px;
+    background: #e5e5e5;
+    margin: 15px 60px;
+}
+/* FLOUTAGE */
+.message-livre-dor {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Le voile flouté recouvre toute la carte */
+.message-livre-dor.floute::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 250, 251, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10;
+    cursor: pointer;
+}
+/* Texte affiché au centre du flou */
+.message-livre-dor.floute::after {
+    content: "🔒";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b85d82;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* =====================*/
 
 .onglets-container {
 
@@ -1220,4 +1416,33 @@ margin:0 auto;
 }
 .section-naissance {
 display: none;
+}
+#btnTriLivreDor {
+    
+    width: 42px;
+    height: 42px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto; /* pousse le bouton à droite */
+    margin-bottom: -14px;
+    margin-top:-20px;
+    padding:0;
+}
+
+#btnTriLivreDor:hover {
+    filter: brightness(1.05);
+}
+@media (max-width: 768px) {
+    #btnTriLivreDor {
+        width: 22px;
+        height: 22px;
+        font-size: 0.9rem;
+        margin-top:-15px;
+    }
 }
