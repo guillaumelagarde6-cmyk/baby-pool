@@ -1,15 +1,20 @@
 
-// ======================
-// CONFIG
-// ======================
+// ============================================================
+// 1. CONFIGURATION
+// ============================================================
+
+// URL de l'API Google Apps Script qui enregistre les pronostics
+// et renvoie les statistiques du Baby Pool.
 
 const scriptURL ="https://script.google.com/macros/s/AKfycbxxx1LM6qzN8Ty00kaarmXxiZBcnIQPkhWUXh_n5bcbzhau84kzHBPh9Htbv5V72c-NJg/exec";
 
 
 
-// ======================
-// POPUP
-// ======================
+// ============================================================
+// 2. POPUP DE NOTIFICATION
+// ============================================================
+
+// Affiche une notification avec une icone, un titre et un message.
 
 function showPopup(icon, title, message) {
 
@@ -22,16 +27,20 @@ function showPopup(icon, title, message) {
     document.getElementById("popup").style.display = "flex";
    
 }
+
+// Ferme la notification principale.
 function closePopup() {
 
     document.getElementById("popup").style.display = "none";
 }
 
 
+// Fermer la notification avec le bouton "Fermer".
 document
 .getElementById("popupClose")
 .addEventListener("click", closePopup);
 
+// Fermer la notification en cliquant sur son arriere-plan.
 document
 .getElementById("popup")
 .addEventListener("click", function (e) {
@@ -42,10 +51,11 @@ document
     }
 });
 
-// ======================
-// POPUP FORMULAIRE
-// ======================
+// ============================================================
+// 3. POPUP DU FORMULAIRE
+// ============================================================
 
+// Recuperation des elements necessaires a l'ouverture et la fermeture du formulaire.
 const popupFormulaire =
     document.getElementById("popupFormulaire");
 const boutonOuvrirFormulaire =
@@ -60,6 +70,8 @@ function fermerFormulaire() {
     popupFormulaire.style.display = "none";
     document.body.classList.remove("popup-ouverte");
 }
+
+// Brancher les boutons d'ouverture et de fermeture du formulaire.
 boutonOuvrirFormulaire.addEventListener(
     "click",
     ouvrirFormulaire
@@ -74,84 +86,70 @@ popupFormulaire.addEventListener("click", function (e) {
     }
 });
 
-// compteur textarea
+// ------------------------------------------------------------
+// Compteur de caracteres du message pour bebe
+// ------------------------------------------------------------
+
 const textareaMotBebe =
     document.getElementById("motBebe");
 const compteurMotBebe =
     document.getElementById("compteurMotBebe");
-textareaMotBebe.addEventListener(
-    "input",
-    function () {
+textareaMotBebe.addEventListener("input", function () {
+    const longueur = textareaMotBebe.value.length;
 
-        compteurMotBebe.textContent =
-            textareaMotBebe.value.length +
-            " / 300 caractères";
+    compteurMotBebe.textContent =
+        longueur +
+        " / 300 caractères";
+    compteurMotBebe.style.color =
+        longueur > 250 ? "#b85d82" : "#9b9b9b";
+});
 
-    }
+// Elements reutilises pendant l'envoi du formulaire.
+const formulaire = document.getElementById("babyForm");
+const boutonEnvoyerFormulaire = formulaire.querySelector(
+    "button[type='submit']"
 );
-textareaMotBebe.addEventListener(
-    "input",
-    function () {
+const loaderFormulaire = document.getElementById("loaderFormulaire");
 
-        const longueur =
-            textareaMotBebe.value.length;
-        compteurMotBebe.textContent =
-            longueur +
-            " / 300 caractères";
-        if (longueur > 250) {
-            compteurMotBebe.style.color =
-                "#b85d82";
-        } else {
-            compteurMotBebe.style.color =
-                "#9b9b9b";
-        }
-    }
-);
+const champsFormulaire = {
+    joueur: document.getElementById("joueur"),
+    prenom: document.getElementById("prenom"),
+    date: document.getElementById("date"),
+    heure: document.getElementById("heure"),
+    poids: document.getElementById("poids"),
+    taille: document.getElementById("taille"),
+    cheveux: document.getElementById("cheveux"),
+    ressemblance: document.getElementById("ressemblance"),
+    motBebe: textareaMotBebe
+};
 
-// ======================
-// FORMULAIRE
-// ======================
+function definirEnvoiEnCours(enCours) {
+    loaderFormulaire.style.display = enCours ? "flex" : "none";
+    boutonEnvoyerFormulaire.disabled = enCours;
+}
 
-document
-.getElementById("babyForm")
-.addEventListener("submit", async function (e) {
+// ============================================================
+// 4. ENVOI DU FORMULAIRE
+// ============================================================
+
+// Collecter les champs, envoyer le pronostic et afficher le resultat.
+formulaire.addEventListener("submit", async function (e) {
 
     e.preventDefault();
-        document.getElementById("loaderFormulaire").style.display = "flex";
+    // Afficher le chargement et bloquer le bouton pour eviter un double envoi.
+    definirEnvoiEnCours(true);
 
-        document.querySelector(
-            "#babyForm button[type='submit']"
-        ).disabled = true;
-
+    // Construire l'objet transmis a Google Apps Script.
     const data = {
-
-        joueur:
-            document.getElementById("joueur").value,
-
-        prenom:
-            document.getElementById("prenom").value,
-
-        date:
-            document.getElementById("date").value,
-
-        heure:
-            document.getElementById("heure").value,
-
-        poids:
-            document.getElementById("poids").value,
-
-        taille:
-            document.getElementById("taille").value,
-
-        cheveux:
-            document.getElementById("cheveux").value,
-
-        ressemblance:
-            document.getElementById("ressemblance").value,
-
-        motBebe:
-        document.getElementById("motBebe").value
-
+        joueur: champsFormulaire.joueur.value,
+        prenom: champsFormulaire.prenom.value,
+        date: champsFormulaire.date.value,
+        heure: champsFormulaire.heure.value,
+        poids: champsFormulaire.poids.value,
+        taille: champsFormulaire.taille.value,
+        cheveux: champsFormulaire.cheveux.value,
+        ressemblance: champsFormulaire.ressemblance.value,
+        motBebe: champsFormulaire.motBebe.value
     };
 
     try {
@@ -164,17 +162,17 @@ document
 
         });
 
-        
-      const result = await response.json();
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP ${response.status}`);
+        }
 
+        const result = await response.json();
+
+        // Reinitialiser le formulaire et rafraichir les tendances si l'envoi a reussi.
         if (result.success) {
-            document.getElementById("babyForm").reset();
+            formulaire.reset();
             fermerFormulaire();
-                document.getElementById("loaderFormulaire").style.display = "none";
-
-                document.querySelector(
-                    "#babyForm button[type='submit']"
-                ).disabled = false;
+            definirEnvoiEnCours(false);
             showPopup(
                 "🎉",
                 "Pronostic enregistré",
@@ -182,13 +180,10 @@ document
             );
             chargerTendances();
         }
+        // Afficher un message adapte si le serveur refuse le pronostic.
         else {
             fermerFormulaire();
-              document.getElementById("loaderFormulaire").style.display = "none";
-
-                document.querySelector(
-                    "#babyForm button[type='submit']"
-                ).disabled = false;
+            definirEnvoiEnCours(false);
             showPopup(
                 "😅",
                 "Pronostic non pris en compte",
@@ -201,7 +196,9 @@ document
     }
    catch (error) {
 
+       // Gerer les erreurs reseau ou les reponses impossibles a traiter.
        console.error("Erreur complète :", error);
+       definirEnvoiEnCours(false);
 
 
         showPopup(
@@ -214,200 +211,132 @@ document
 
 });
 
-// chargement des tendances 
+// ============================================================
+// 5. CHARGEMENT ET AFFICHAGE DES TENDANCES
+// ============================================================
 
-async function chargerTendances() {
+// Dernieres donnees recues : le tri peut les reutiliser sans nouvel appel reseau.
+let statistiquesGlobales = null;
+const listeLivreDor = document.getElementById("listeLivreDor");
+
+// Formater une date pour son affichage dans les cartes du livre d'or.
+function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+
+    const dateTexte = date.toLocaleDateString("fr-FR", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
+    const heureTexte = date.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit"
+    }).replace(":", "h");
+
+    return dateTexte.charAt(0).toUpperCase() +
+        dateTexte.slice(1) +
+        " à " +
+        heureTexte;
+}
+
+// Recuperer les statistiques et reconstruire le contenu du livre d'or.
+async function chargerTendances(recharger = true) {
 
     try {
 
-        const response = await fetch(
-    scriptURL + "?t=" + Date.now()
-        );
+        let stats = statistiquesGlobales;
 
-        const stats = await response.json();
+        if (recharger || !stats) {
+            // Ajouter un timestamp uniquement lors d'un vrai rechargement.
+            const response = await fetch(
+                scriptURL + "?t=" + Date.now()
+            );
 
-        console.log(stats);
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP ${response.status}`);
+            }
 
-        document.getElementById("nbPronostics").textContent =
-        stats.total;
+            stats = await response.json();
+            statistiquesGlobales = stats;
+        }
 
-        document.getElementById("tendancePrenom").innerHTML =
-            formatValeurTendance(stats.prenomFavori);
+        if (recharger) {
+            // Mettre a jour les six indicateurs apres un appel App Script.
+            document.getElementById("nbPronostics").textContent = stats.total;
 
-        document.getElementById("tendanceHeure").innerHTML =
-            formatValeurTendance(stats.heureFavorite);
+            afficherValeurTendance(
+                document.getElementById("tendancePrenom"),
+                stats.prenomFavori
+            );
+            afficherValeurTendance(
+                document.getElementById("tendanceHeure"),
+                stats.heureFavorite
+            );
+            afficherValeurTendance(
+                document.getElementById("tendancePoids"),
+                stats.poidsFavori
+            );
+            afficherValeurTendance(
+                document.getElementById("tendanceTaille"),
+                stats.tailleFavorite
+            );
+            afficherValeurTendance(
+                document.getElementById("tendanceCheveux"),
+                stats.cheveuxFavoris
+            );
+            afficherValeurTendance(
+                document.getElementById("tendanceRessemblance"),
+                stats.ressemblanceFavorite
+            );
+        }
 
-        document.getElementById("tendancePoids").innerHTML =
-            formatValeurTendance(stats.poidsFavori);
+        listeLivreDor.replaceChildren();
 
-        document.getElementById("tendanceTaille").innerHTML =
-            formatValeurTendance(stats.tailleFavorite);
+        // Copier puis trier les messages sans modifier la reponse originale.
+        const messagesTries = [...stats.messagesBebe];
+        if (ordreLivreDor === "recent") {
+            messagesTries.sort(
+                (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+            );
+        } else {
+            messagesTries.sort(
+                (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+            );
+        }
 
-        document.getElementById("tendanceCheveux").innerHTML =
-            formatValeurTendance(stats.cheveuxFavoris);
+        // Cloner le template HTML puis remplir ses champs avec du texte.
+        const modeleCarte = document.getElementById("modeleMessageLivreDor");
+        const cartes = document.createDocumentFragment();
 
-        document.getElementById("tendanceRessemblance").innerHTML =
-            formatValeurTendance(stats.ressemblanceFavorite);
+        messagesTries.forEach(function(message) {
+            const carte = modeleCarte.content.cloneNode(true);
+            const elementCarte = carte.querySelector(".message-livre-dor");
 
-        const listeLivreDor =
-            document.getElementById("listeLivreDor");
-         listeLivreDor.innerHTML = ""; 
+            if (!livreDorDeverrouille) {
+                elementCarte.classList.add("floute");
+            }
 
-         //Code pour modifier le format date & heure complète 
-                            function formatTimestamp(timestamp) {
-                        const date = new Date(timestamp);
+            remplirChampCarte(carte, "auteur", message.auteur);
+            remplirChampCarte(carte, "prenom", message.prenom);
+            remplirChampCarte(carte, "date", message.date);
+            remplirChampCarte(carte, "heure", message.heure);
+            remplirChampCarte(carte, "poids", `${message.poids} g`);
+            remplirChampCarte(carte, "taille", `${message.taille} cm`);
+            remplirChampCarte(carte, "cheveux", message.cheveux);
+            remplirChampCarte(
+                carte,
+                "timestamp",
+                formatTimestamp(message.timestamp)
+            );
+            remplirChampCarte(carte, "message", message.message);
 
-                        const dateTexte = date.toLocaleDateString("fr-FR", {
-                            weekday: "long",
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric"
-                        });
-
-                        const heureTexte = date.toLocaleTimeString("fr-FR", {
-                            hour: "2-digit",
-                            minute: "2-digit"
-                        }).replace(":", "h");
-
-                        return dateTexte.charAt(0).toUpperCase() +
-                            dateTexte.slice(1) +
-                            " à " +
-                            heureTexte;
-                    }
-         
-                const messagesTries = [...stats.messagesBebe];
-                if (ordreLivreDor === "recent") {
-                    messagesTries.sort(
-                        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-                    );
-                } else {
-                    messagesTries.sort(
-                        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
-                    );
-                }
-                messagesTries.forEach(function(message) {
-           
-            listeLivreDor.innerHTML += `
-
-                <div class="message-livre-dor ${livreDorDeverrouille ? '' : 'floute'}">
-               
-                    <div class="message-auteur">
-                       <span> ${message.auteur} </span>
-                        <div class="tendances-grid">
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">💖</div>
-                                <div class="label">${message.prenom}</div>            
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">📅</div>
-                                <div class="label">${message.date}</div>           
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">⏰</div>
-                                <div class="label">${message.heure}</div>         
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">⚖️</div>
-                                <div class="label">${message.poids} g</div>   
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">📏</div>
-                                <div class="label">${message.taille} cm</div>
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">💇</div>
-                                <div class="label">${message.cheveux}</div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                       
-                    
-
-                    <div class="timestamp">${formatTimestamp(message.timestamp)} </div>
-
-                    <div class="tendances-grid-phone">
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">💖</div>
-                                <div class="label">${message.prenom}</div>            
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">📅</div>
-                                <div class="label">${message.date}</div>           
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">⏰</div>
-                                <div class="label">${message.heure}</div>         
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">⚖️</div>
-                                <div class="label">${message.poids} g</div>   
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">📏</div>
-                                <div class="label">${message.taille} cm</div>
-                            </div>
-
-                            <div class="boite-vote-message">
-                                <div class="emoji">💇</div>
-                                <div class="label">${message.cheveux}</div>
-                            </div>
-                        </div>
-
-
-
-                    <div class="separateur"></div>
-
-                         
-                       
-                    <div class="message-texte">
-
-                        ${message.message}
-
-                    </div>
-
-                </div>
-
-            `;
-
+            cartes.append(carte);
         });
 
-// ============================================
-// CLIC SUR UNE CARTE FLOUTÉE
-// ============================================
+        listeLivreDor.append(cartes);
 
-listeLivreDor.addEventListener("click", function(event) {
-    if (livreDorDeverrouille) {
-        return;
-    }
-
-    const carteFloutee = event.target.closest(".message-livre-dor.floute");
-
-    if (!carteFloutee) {
-        return;
-    }
-
-    popupLivreDor.style.display = "flex";
-
-    codeLivreDor.value = "";
-
-    setTimeout(function() {
-        codeLivreDor.focus();
-    }, 100);
-
-});
     }
     catch (error) {
 
@@ -417,8 +346,16 @@ listeLivreDor.addEventListener("click", function(event) {
 
 }
 
-// Variable pour le tri 
-let ordreLivreDor = "recent"; let livreDorDeverrouille = false; let messagesBebeGlobaux = [];
+// ============================================================
+// 6. ETAT DU LIVRE D'OR ET TRI
+// ============================================================
+
+// ordreLivreDor determine l'ordre d'affichage des messages.
+// livreDorDeverrouille indique si le contenu protege est visible.
+let ordreLivreDor = "recent";
+let livreDorDeverrouille = false;
+
+// Alterner entre les messages les plus recents et les plus anciens.
 document
     .getElementById("btnTriLivreDor")
     .addEventListener("click", function() {
@@ -429,93 +366,44 @@ document
             ordreLivreDor = "recent";
             this.textContent = "⬇️";
         }
-        chargerTendances();
+        // Le tri reutilise les donnees deja recues et ne relance pas App Script.
+        chargerTendances(false);
     });
 
-// --------------------------
-
+// Premier chargement des statistiques et des messages.
 chargerTendances();
 
+// ------------------------------------------------------------
+// 7. REMPLISSAGE DES ELEMENTS HTML
+// ------------------------------------------------------------
 
-// VOILA LE BLOC DATE QUE J'AI ENLEVE
- // <div class="tendance-mini">
-  //      <div class="entete-tendance">
-
-  //        <span class="emoji">📅</span>
-
-   //         <span class="label">
-   //          Date favorite
-   //         </span>
-
-   //     </div>
-
-    //    <div class="valeur">
-    //     ${stats.dateFavorite}
-    //    </div>
-
-  //  </div>
-
-// ANCIENNE MISE EN FORME DES BOX VOTES DANS LIVRE D'OR 
-                  //      <div class="tendances-grid">
-
-                   //         <div class="box-tendance">
-                    //            <div class="emoji">💖</div>
-                      //          <div class="label">${message.prenom}</div>            
-                        //    </div>
-
-                          //  <div class="box-tendance">
-                            //    <div class="emoji">📅</div>
-                              //  <div class="label">${message.date}</div>           
-                       //     </div>
-
-                       //     <div class="box-tendance">
-                       ///         <div class="emoji">⏰</div>
-                        //        <div class="label">${message.heure}</div>         
-                        //    </div>
-
-                       //     <div class="box-tendance">
-                       //         <div class="emoji">⚖️</div>
-                        //        <div class="label">${message.poids}</div>   
-                       //     </div>
-
-                       //     <div class="box-tendance">
-                       //         <div class="emoji">📏</div>
-                       //         <div class="label">${message.taille}</div>
-                      //      </div>
-
-                      //      <div class="box-tendance">
-                      //          <div class="emoji">💇</div>
-                      //          <div class="label">${message.cheveux}</div>
-                     //       </div>
-                     //   </div>
-
-  // =================
-  // Pour griser le pas de tendance
-
- 
-function formatValeurTendance(valeur) {
-
-    if (
+// Afficher une tendance dans le span deja present dans index.html.
+function afficherValeurTendance(element, valeur) {
+    const contenu = element.querySelector(".valeur-contenu");
+    const valeurAbsente =
         valeur === undefined ||
         valeur === null ||
         valeur === "" ||
         valeur === "undefined" ||
-        valeur === "Pas de tendance"
-    ) {
+        valeur === "Pas de tendance";
 
-        return `
-            <span class="pas-tendance">
-                Pas de tendance
-            </span>
-        `;
-    }
-
-    return valeur;
+    contenu.textContent = valeurAbsente ? "Pas de tendance" : valeur;
+    contenu.classList.toggle("pas-tendance", valeurAbsente);
 }
 
-// ======================
-// POP UP A CODE pour défloutage
-//=======================
+// Remplir tous les champs portant le meme nom dans les versions desktop
+// et mobile de la carte du livre d'or.
+function remplirChampCarte(carte, nomChamp, valeur) {
+    carte.querySelectorAll(`[data-champ="${nomChamp}"]`).forEach(function(element) {
+        element.textContent = valeur ?? "";
+    });
+}
+
+// ============================================================
+// 8. DEVERROUILLAGE DU LIVRE D'OR
+// ============================================================
+
+// Verifier le code, retirer la classe de floutage et fermer la popup.
 document.getElementById(
     "validerCodeLivreDor"
 ).addEventListener(
@@ -541,10 +429,11 @@ document.getElementById(
 
     }
 );
-// ======================
-// ONGLETS
-// ======================
+// ============================================================
+// 9. NAVIGATION ENTRE LES ONGLETS
+// ============================================================
 
+// Recuperer les boutons et les trois panneaux principaux.
 const ongletLivreDor =
     document.getElementById("ongletLivreDor");
 
@@ -564,9 +453,9 @@ const ongletTendance =
     document.getElementById("ongletTendance");
 
 
-// ======================
-// ETAT INITIAL
-// ======================
+// ------------------------------------------------------------
+// Etat affiche au chargement de la page
+// ------------------------------------------------------------
 
 ongletTendance.classList.add("onglet-inactif");
 
@@ -581,9 +470,9 @@ containerLivreDor.style.display = "none";
 containerClassement.style.display = "none";
 
 
-// ======================
-// ONGLET CLASSEMENT
-// ======================
+// ------------------------------------------------------------
+// Afficher l'onglet Classement
+// ------------------------------------------------------------
 
 ongletClassement.addEventListener(
     "click",
@@ -611,9 +500,9 @@ ongletClassement.addEventListener(
 );
 
 
-// ======================
-// ONGLET LIVRE D'OR
-// ======================
+// ------------------------------------------------------------
+// Afficher l'onglet Livre d'or
+// ------------------------------------------------------------
 
 ongletLivreDor.addEventListener(
     "click",
@@ -642,9 +531,9 @@ ongletLivreDor.addEventListener(
 );
 
 
-// ======================
-// ONGLET TENDANCES
-// ======================
+// ------------------------------------------------------------
+// Afficher l'onglet Tendances
+// ------------------------------------------------------------
 
 ongletTendance.addEventListener(
     "click",
@@ -672,16 +561,41 @@ ongletTendance.addEventListener(
 );
 
 
-// ======================
-// POPUP LIVRE D'OR
-// ======================
+// ============================================================
+// 10. POPUP DE CODE DU LIVRE D'OR
+// ============================================================
 
+// Recuperer le bouton de fermeture et la popup demandant le code.
 const boutonFermerLivreDor =
     document.getElementById("fermerLivreDor");
 
 const popupLivreDor =
     document.getElementById("popupCodeLivreDor");
+const codeLivreDor =
+    document.getElementById("codeLivreDor");
 
+// Ouvrir la demande de code lorsqu'une carte est verrouillee.
+// Cet ecouteur est declare une seule fois, en dehors du rechargement des donnees.
+listeLivreDor.addEventListener("click", function(event) {
+    if (livreDorDeverrouille) {
+        return;
+    }
+
+    const carteFloutee = event.target.closest(".message-livre-dor.floute");
+
+    if (!carteFloutee) {
+        return;
+    }
+
+    popupLivreDor.style.display = "flex";
+    codeLivreDor.value = "";
+
+    setTimeout(function() {
+        codeLivreDor.focus();
+    }, 100);
+});
+
+// Fermer la popup avec son bouton.
 boutonFermerLivreDor.addEventListener(
     "click",
     function () {
@@ -692,6 +606,7 @@ boutonFermerLivreDor.addEventListener(
     }
 );
 
+// Fermer la popup en cliquant sur son arriere-plan.
 popupLivreDor.addEventListener(
     "click",
     function (e) {
@@ -705,6 +620,11 @@ popupLivreDor.addEventListener(
 
     }
 );
+// ============================================================
+// 11. POPUP D'INFORMATIONS DU CLASSEMENT
+// ============================================================
+
+// Recuperer les elements de la popup expliquant le calcul des points.
 const btnInfoClassement =
     document.getElementById("btnInfoClassement");
 
@@ -714,6 +634,7 @@ const popupClassement =
 const fermerPopupClassement =
     document.getElementById("fermerPopupClassement");
 
+// Ouvrir les regles du classement.
 btnInfoClassement.addEventListener(
     "click",
     function () {
@@ -724,6 +645,7 @@ btnInfoClassement.addEventListener(
     }
 );
 
+// Fermer les regles du classement avec le bouton.
 fermerPopupClassement.addEventListener(
     "click",
     function () {
@@ -734,6 +656,7 @@ fermerPopupClassement.addEventListener(
     }
 );
 
+// Fermer les regles en cliquant sur l'arriere-plan.
 popupClassement.addEventListener(
     "click",
     function (e) {

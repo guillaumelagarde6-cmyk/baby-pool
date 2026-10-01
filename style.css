@@ -1,3 +1,7 @@
+/* ============================================================
+    1. BASE ET MISE EN PAGE GENERALE
+    ============================================================ */
+
 * {
     box-sizing: border-box;
 }
@@ -9,41 +13,35 @@ body {
     color: #333;
 }
 
+/* ------------------------------------------------------------
+    En-tete de la page
+    ------------------------------------------------------------ */
 .hero {
-
     background: linear-gradient(
         135deg,
          #f7c8d8 0%,
         #f9d8e5 35%,
         #fde9f2 100%
     );
-
     color:#6b4f57;
     padding: 50px 20px 50px;
     text-align: center;
-
 }
 
-
 .hero h1 {
-
     margin: 0;
-
     font-size: 3rem;
-
     color: #b85d82;
     white-space: nowrap;
     font-weight: 800;
 }
 
 .hero h2 {
-
     margin-top: 15px;
-
     color: #6b4f57;
-
     font-weight: 600;
 }
+
 .hero p {
     max-width: 700px;
     margin: 20px auto 0;
@@ -51,64 +49,48 @@ body {
 
 @media (max-width: 768px) {
    .hero {
- 
         padding: 30px 20px 40px;  
     }  
     .hero h1 {
-
       font-size: 1.8rem !important; 
-
     } 
     .hero h2 {
-
       font-size: 0.9rem; 
-
     } 
     .hero p {
-
       font-size: 0.9rem; 
-
     } 
-
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 0 20px 40px;
-}
-.containerFooter {
+/* ------------------------------------------------------------
+    Conteneurs et cartes principales
+    ------------------------------------------------------------ */
+.containerMain {
     max-width: 900px;
     margin: auto;
     padding: 0px 20px 15px;
 }
 
 .card {
-
     background: #ffffff;
-
     margin-top: -70px;
-
     padding: 25px 40px 10px;
-
     border-radius: 28px;
-
     box-shadow:
         0 15px 40px rgba(184,93,130,.15);
 }
+
 .card h3 {
-
     text-align: center;
-
     margin-top: 0;
-
     color: #b85d82;
-
     font-size: 1.8rem;
-
     font-weight: 700;
 }
 
+/* ------------------------------------------------------------
+    Champs de formulaire et boutons generiques
+    ------------------------------------------------------------ */
 label {
     display: block;
     margin-top: 18px;
@@ -116,55 +98,36 @@ label {
     font-weight: 600;
 }
 
-
 input,
 select {
-
     width: 100%;
-
     padding: 14px;
-
     border: 2px solid #f3d8e3;
-
     border-radius: 12px;
-
     background: #fffafb;
-
     font-size: 16px;
 }
+
  @media (max-width: 768px) {
-
-
 input[type="date"],
 input[type="time"] {
-
     height: 52px;
-
     -webkit-appearance: none;
-
     appearance: none;
 }
 }
 
-
-
 input:focus,
 select:focus {
-
     outline: none;
-
     border-color: #d87ca6;
-
     box-shadow:
         0 0 0 4px rgba(216,124,166,.15);
 }
 
 .row {
-
     display: flex;
-
     gap: 20px;
-
     margin-top: 5px;
 }
 
@@ -173,38 +136,25 @@ select:focus {
 }
 
 button {
-
     width: 100%;
-
     margin-top: 30px;
-
     padding: 18px;
-
     border: none;
-
     border-radius: 12px;
-
     background: linear-gradient(
         135deg,
         #d87ca6,
         #c76691
     );
-
     color: white;
-
     font-size: 18px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: .3s;
 }
 
 button:hover {
-
     transform: translateY(-2px);
-
     background: linear-gradient(
         135deg,
         #c76691,
@@ -212,46 +162,31 @@ button:hover {
     );
 }
 
-#resultat {
-    margin-top: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
 @media (max-width: 768px) {
-
     .row {
         flex-direction: column;
         gap: 0;
     }
-
     .hero h1 {
         font-size: 2.2rem;
     }
-
 }
 
-
+/* ------------------------------------------------------------
+    Message de bienvenue
+    ------------------------------------------------------------ */
 .cadeaux {
-
     display: inline-block;
-
     margin-top: 25px;
-
     background: rgba(255,255,255,.55);
-
     padding: 14px 24px;
-
     border-radius: 50px;
-
     font-weight: 600;
-
     color: #8c5570;
-
     border: 1px solid rgba(255,255,255,.6);
-
     backdrop-filter: blur(8px);
 }
+
 @media (max-width:768px){
  .cadeaux {
     margin-top: 15px;
@@ -259,194 +194,100 @@ button:hover {
     padding: 14px 24px;
 }   
 }
-select {
 
+select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-
     cursor: pointer;
-
     background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23b85d82'%3E%3Cpath d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
-
     background-repeat: no-repeat;
-
     background-position: right 15px center;
-
     padding-right: 45px;
 }
-.bonus-title {
 
-    margin-top: 30px;
-    margin-bottom: 15px;
-
-    text-align: center;
-
-    color: #b85d82;
-
-    font-weight: 700;
-
-    font-size: 1.1rem;
-}
-.empty-state {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 60px 20px;
-}
-
-.empty-icon {
-
-    font-size: 4rem;
-
-    margin-bottom: 20px;
-}
-
-.empty-state h4 {
-
-    margin-bottom: 10px;
-
-    color: #b85d82;
-
-    font-size: 1.8rem;
-}
-
-.empty-state p {
-
-    color: #8d7280;
-
-    max-width: 500px;
-}
+/* ============================================================
+    2. TENDANCES
+    ============================================================ */
 
 .compteur-pronostics {
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     width: fit-content;
-
     margin: 25px auto 20px;
-
     padding: 10px 24px;
-
     background: #fffafb;
-
     border: 2px solid #f3d8e3;
-
     border-radius: 18px;
 }
 
 .compteur-pronostics span {
-
     font-size: 2.5rem;
-
     font-weight: 700;
-
     color: #b85d82;
 }
 
 .compteur-pronostics small {
-
     color: #8d7280;
 }
-/* =========================
-   POPUP
-========================= */
+
+/* ============================================================
+    3. POPUP DE NOTIFICATION
+    ============================================================ */
 
 .popup-overlay {
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100vw;
     height: 100vh;
-
     background: rgba(0, 0, 0, 0.45);
-
     backdrop-filter: blur(5px);
-
     display: none;
-
     justify-content: center;
     align-items: center;
-
     z-index: 99999;
 }
 
 .popup-content {
-
     width: 90%;
     max-width: 420px;
-
     background: white;
-
     border-radius: 24px;
-
     padding: 30px;
-
     text-align: center;
-
     box-shadow:
         0 15px 40px rgba(0,0,0,.20);
 }
 
 .popup-icon {
-
     font-size: 64px;
-
     margin-bottom: 15px;
 }
 
 .popup-content h3 {
-
     margin: 0 0 10px;
-
     color: #b85d82;
-
     font-size: 1.8rem;
 }
 
 .popup-content p {
-
     color: #666;
-
     line-height: 1.6;
-
     margin-bottom: 20px;
 }
 
 .popup-button {
-
     width: 100%;
-
     padding: 14px;
-
     border: none;
-
     border-radius: 12px;
-
     cursor: pointer;
-
     color: white;
-
     font-weight: bold;
-
     background: linear-gradient(
         135deg,
         #d87ca6,
@@ -455,213 +296,127 @@ select {
 }
 
 .popup-button:hover {
-
     opacity: .9;
 }
 
-.tendance-prenom {
-
-    background: #fffafb;
-
-    border: 2px solid #f3d8e3;
-
-    border-radius: 20px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    margin-bottom: 12px;
-}
-
-.tendance-prenom .emoji {
-
-    font-size: 2rem;
-
-    margin-bottom: 6px;
-}
-
-.tendance-prenom .label {
-
-    color: #777;
-
-    font-size: .95rem;
-}
-
-.tendance-prenom .valeur {
-
-    color: #b85d82;
-
-    font-size: 1.8rem;
-
-    font-weight: 700;
-
-    margin-top: 6px;
-}
+/* ------------------------------------------------------------
+    Valeurs de tendance
+    ------------------------------------------------------------ */
 .pas-tendance {
-
     color: #9b9b9b;
     font-size: 1.0rem;
     font-style: italic;
     font-weight: 500;
     margin-top: 5px;
 }
-.tendance-grid-1 {
 
-    display: grid;
-
-    gap: 12px;
-}
-
-
+/* ------------------------------------------------------------
+    Cartes des tendances
+    ------------------------------------------------------------ */
 .tendance-grid-2 {
-
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
     gap: 12px;
 }
 
 .tendance-mini {
-
     background: #fffafb;
-
     border: 2px solid #f3d8e3;
-
     border-radius: 16px;
-
     padding: 5px 5px;
-
     min-height: 60px;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: flex-start;
 }
 
-
 .tendance-mini .valeur {
-
     color: #b85d82;
-
     font-size: 1.1rem;
-
     font-weight: 700;
-
     margin-bottom: 4px;
     text-align: center;
 }
+
 .tendance-mini .emoji {
-
     font-size: 2.5rem;
-
     margin-bottom: 1px;
 }
 
 .tendance-mini .label {
-
     color: #777;
-
     font-size: .9rem;
     text-align: center;
     margin-top: -5px;
     margin-bottom: 5px;
-    color: #777;
 }
 
 @media (max-width:768px){
-
     .tendance-grid-2{
-
         grid-template-columns:1fr;
     }
-
 }
+
 .entete-tendance {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     position: relative;
     margin-top: 0px;
     margin-bottom: 1px;
 }
 
 .entete-tendance .emoji {
-
     position: absolute;
     margin: 5px;
     margin-top: 35px;
     left: 0;
     padding:0px;
-   
 }
 
 .entete-tendance .label {
-
     color: #777;
-
     font-size: 1rem;
     margin-top: 5px;
     font-weight: 600;
 }
 
 @media (max-width: 768px) {
-
     .entete-tendance .emoji {
-
         font-size: 1.8rem;
     }
-    
 }
 
 /* CLASS de l'entête Tendances en direct  */
+/* ------------------------------------------------------------
+    Titre et separateur des tendances
+    ------------------------------------------------------------ */
 .separateur-tendances {
-
     display: flex;
-
     align-items: center;
-
     gap: 15px;
-   
     margin: 45px 0 5px;
 }
 
 .separateur-tendances::before,
 .separateur-tendances::after {
-
     content: "";
-
     flex: 1;
-
     height: 2px;
-
     background: #f3d8e3;
 }
 
-
-
-
 @media (max-width: 768px) {
-
     h3.separateur-tendances {
         font-size: 1.4rem;
         flex-direction: column;
         gap: 10px;
     }
     .separateur-tendances::before {
-        
         margin: 0 0 2px;
         width: 300px;
         flex: none;
     }
-
 }
 
 .tendance-intro {
@@ -671,34 +426,27 @@ select {
     text-align: center;
     }
 
+/* ------------------------------------------------------------
+    Signature du site
+    ------------------------------------------------------------ */
 .signature-site {
-
     text-align: center;
-
     margin: 0 0 15px;
-
     color: #9b9b9b;
-
     font-size: 0.85rem;
-
     font-style: italic;
 }
+
 @media (max-width: 768px) {
-
     .signature-site {
-
-    text-align: center;
-
-    margin: 0 0 15px;
-
-    color: #9b9b9b;
-
     font-size: 0.75rem;
     padding: 0 70px 0;
-    font-style: italic;
     }
-
 }
+
+/* ------------------------------------------------------------
+    Bouton de participation
+    ------------------------------------------------------------ */
 .bouton-participer {
     display: block;
     width: fit-content;
@@ -723,15 +471,15 @@ select {
         box-shadow 0.2s ease;
 }
 
-
 .bouton-participer:hover {
     transform: translateY(-2px);
     box-shadow:
         0 14px 30px rgba(184, 93, 130, 0.3);
 }
-/* =========================
-   POPUP FORMULAIRE
-========================= */
+
+/* ============================================================
+    4. POPUP DU FORMULAIRE
+    ============================================================ */
 
 .formulaire-overlay {
     position: fixed;
@@ -744,17 +492,18 @@ select {
     backdrop-filter: blur(6px);
     z-index: 90000;
 }
+
 .formulaire-popup {
     display: flex;
     flex-direction: column;
-    width: 100;
+    width: 100%;
     max-width: 760px;
     max-height: calc(100vh - 40px);
     overflow: hidden;
     background: white;
     border-radius: 26px;
     box-shadow:
-        0 20px 60px rg*a(0, 0, 0, 0.25);
+        0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 .formulaire-popup-header {
@@ -764,11 +513,13 @@ select {
     border-bottom: 2px solid #f3d8e3;
     text-align: center;
 }
+
 .formulaire-popup-header h3 {
     margin: 0;
     color: #b85d82;
     font-size: 1.6rem;
 }
+
 .formulaire-fermer {
     position: absolute;
     top: 50%;
@@ -787,18 +538,22 @@ select {
     line-height: 1;
     cursor: pointer;
 }
+
 .formulaire-fermer:hover {
     transform: translateY(-50%);
     background: #f7dce8;
 }
+
 .formulaire-popup-body {
     padding: 5px 30px 30px;
     overflow-y: auto;
     overscroll-behavior: contain;
 }
+
 body.popup-ouverte {
     overflow: hidden;
 }
+
 @media (max-width: 768px) {
     .formulaire-overlay {
         padding: 10px;
@@ -823,6 +578,7 @@ body.popup-ouverte {
         padding: 2px 18px 24px;
     }
 }
+
 .loader-formulaire {
     display: none;
     justify-content: center;
@@ -832,6 +588,7 @@ body.popup-ouverte {
     color: #b85d82;
     font-weight: 600;
 }
+
 .spinner {
     width: 22px;
     height: 22px;
@@ -840,6 +597,7 @@ body.popup-ouverte {
     border-radius: 50%;
     animation: rotation 0.8s linear infinite;
 }
+
 @keyframes rotation {
     from {
         transform: rotate(0deg);
@@ -847,13 +605,6 @@ body.popup-ouverte {
     to {
         transform: rotate(360deg);
     }
-}
-
-@media (max-width: 768px) {
-    .bouton-participer { 
-        margin: 10px auto 20px;
-    }
-    
 }
 
 @media (max-width: 768px) {
@@ -871,6 +622,9 @@ body.popup-ouverte {
     }
 }
 
+/* ------------------------------------------------------------
+    Message libre et compteur de caracteres
+    ------------------------------------------------------------ */
 textarea {
     width: 100%;
     min-height: 100px;
@@ -882,6 +636,7 @@ textarea {
     resize: vertical;
     font-family: inherit;
 }
+
 textarea:focus {
     outline: none;
     border-color: #d87ca6;
@@ -890,22 +645,16 @@ textarea:focus {
 }
 
 .compteur-mot-bebe {
-
     text-align: right;
-
     margin-top: 5px;
-
     color: #9b9b9b;
-
     font-size: 0.8rem;
-
     font-style: italic;
 }
 
-
-
-
-/* ONGLET LVIRE D'OR */
+/* ============================================================
+    5. ONGLETS DE NAVIGATION
+    ============================================================ */
 
 .onglets-container {
     display: flex;
@@ -916,10 +665,10 @@ textarea:focus {
     margin-right: 15px;
     position: relative;
     z-index: 10;
+    pointer-events: none;
 }
 
 .onglet-action {
-
     font-size: 0.8rem;
     position: static;
     width: 110px;
@@ -931,34 +680,28 @@ textarea:focus {
     color: white;
     font-weight: 700;
     cursor: pointer;
+    pointer-events: auto;
     box-shadow:
         0 -3px 12px rgba(184,93,130,.18);
 }
-@media (max-width: 768px) {
 
+@media (max-width: 768px) {
     .onglets-container {
-        display: flex;
     justify-content: center;
     gap: 8px;
     margin-bottom: 50px;
     margin-top: -30px;
     margin-right: 0px;
     }
-
     .onglet-action {
     width: 105px;
     height: 42px;
     font-size: 0.7rem;
-        margin-top: 0px;
-    padding:0px;
     }
-
 }
 
 button:hover.onglet-action {
-
     transform: translateY(-1px);
-
     background: linear-gradient(
         135deg,
         #c76691,
@@ -969,45 +712,42 @@ button:hover.onglet-action {
 #containerLivreDor {
     display: none;  
 }
+
 #containerClassement {
     display: none;
 }
 
 .onglet-actif {
-
     background: linear-gradient(
         135deg,
         #d87ca6,
         #c76691
     ) !important;
-
     color: white !important;
 }
 
 .onglet-inactif {
-
     background: linear-gradient(
         135deg,
         #65535b,
         #85566b
     ) !important;
-
     color: white !important;
 }
 
-/* ===================== LVIRE D'OR ================== */
+/* ============================================================
+    6. LIVRE D'OR
+    ============================================================ */
 .message-livre-dor {
-
     background: #fffafb;
-
     border: 2px solid #f3d8e3;
-
     border-radius: 16px;
-
     padding: 15px;
-
     margin-bottom: 12px;
     margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
 }
 
 .message-auteur {
@@ -1018,10 +758,10 @@ button:hover.onglet-action {
     align-items: center;
     gap: 10px;
 }
+
 /* .message-auteur span {
   SI JE VEUX APPLIQUER DU CCS SPECIFIQUE SUR LE NOM DE LA PERSONNE 
     }   */
-
 
 .timestamp {
     font-size: 0.7rem;
@@ -1032,6 +772,7 @@ button:hover.onglet-action {
     align-items: center;
     gap: 8px;
 }
+
 .message-texte {
     position: relative;
     text-align: center;
@@ -1041,7 +782,6 @@ button:hover.onglet-action {
     padding: 10px 50px;
 }
 
-
 .message-texte::before {
     content: "❝";
     position: absolute;
@@ -1050,9 +790,7 @@ button:hover.onglet-action {
     font-size: 1.8rem;
     color: #d8b2c3;
 }
-.message-livre-dor {
-    transition: all 0.25s ease;
-}
+
 .message-livre-dor:hover {
     transform: translateY(-3px);
     background-color: #fffafb;
@@ -1065,10 +803,9 @@ button:hover.onglet-action {
     gap: 2px;
     margin-bottom:-20px;
     margin-left: auto; /* <-- pour que la grid commence à droite*/
-   
 }
 
-   .boite-vote-message {
+.boite-vote-message {
     margin-left:0px;
     margin-right:0px;
     margin-bottom: 0px;
@@ -1077,11 +814,8 @@ button:hover.onglet-action {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 4px;
-
 }
 
 .boite-vote-message .emoji {
@@ -1093,10 +827,9 @@ button:hover.onglet-action {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
 .boite-vote-message .label {
-    
     background: #fffafb;
     border: 2px solid #f3d8e3;
     border-radius: 12px;
@@ -1110,10 +843,10 @@ button:hover.onglet-action {
     min-width: 80px;
     max-height: 29px;
 }
+
 .tendances-grid-phone {
     display:none;
  }   
-
 
 @media (max-width: 768px) {
 #containerLivreDor {
@@ -1123,7 +856,6 @@ button:hover.onglet-action {
 .message-livre-dor .message-auteur .tendances-grid {
     display:none;
  } 
-
 .tendances-grid-phone {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1146,7 +878,6 @@ gap: 1px;
 }
 .message-texte{
     padding: 10px 15px; 
-
 }
 .message-texte::before {
     content: "❝";
@@ -1158,14 +889,11 @@ gap: 1px;
 }
 .boite-vote-message .emoji{
     font-size: 0.9rem;
-    margin-bottom: 0px;
     margin: 0;
 }
 .timestamp{
-    
     margin-top: 9px;
 }
-
 }
 
 .separateur {
@@ -1173,17 +901,16 @@ gap: 1px;
     background: #e5e5e5;
     margin: 15px 0;
 }
+
 .separateur2 {
     height: 1px;
     background: #e5e5e5;
     margin: 15px 60px;
 }
-/* FLOUTAGE */
-.message-livre-dor {
-    position: relative;
-    overflow: hidden;
-}
 
+/* ------------------------------------------------------------
+   Verrouillage visuel du livre d'or
+   ------------------------------------------------------------ */
 /* Le voile flouté recouvre toute la carte */
 .message-livre-dor.floute::before {
     content: "";
@@ -1195,50 +922,36 @@ gap: 1px;
     z-index: 10;
     cursor: pointer;
 }
-/* Texte affiché au centre du flou */
+
+/* Cadenas affiche au centre du flou */
 .message-livre-dor.floute::after {
-    content: "🔒";
+    content: "";
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #b85d82;
-    font-size: 4rem;
-    font-weight: 700;
-    text-align: center;
-    pointer-events: none;
+    background: transparent url("cadena4.gif") center / 80px 80px no-repeat;
     z-index: 11;
-}
-
-/* =====================*/
-
-.onglets-container {
-
     pointer-events: none;
-
 }
 
-.onglet-action {
-
-    pointer-events: auto;
-
-}
+/* ------------------------------------------------------------
+   Ajustements des titres et des separations
+   ------------------------------------------------------------ */
 #containerLivreDor h3 {
-
     margin-top:10px;
-
 }
+
 #containerClassement h3 {
-
     margin-top:10px;
-
 }
-/* CSS POUR ONGLET CLASSEMENT */
+
+/* ============================================================
+    7. CLASSEMENT
+    ============================================================ */
 .tendances-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
 }
+
 .box-tendance {
     background: #fffafb;
     border: 2px solid #f3d8e3;
@@ -1252,16 +965,16 @@ gap: 1px;
     flex-direction: column;
     justify-content: flex-start;
 }
+
 .box-tendance .emoji {
 font-size: 2rem;
 text-align: center;
-
 }
+
 .box-tendance .label {
     color: #b85d82;
     font-size: 1.1rem;
     font-weight: 700;
-  
     margin-top: 5px;
 margin-bottom: 0px;
     text-align: center;
@@ -1278,30 +991,11 @@ margin-bottom: 0px;
 .box-tendance {
     margin-bottom: 5px;
 }
-
 .box-tendance .label{
     font-size: 0.95rem;
 }
 .box-tendance .emoji{
     font-size: 1.3rem;
-    margin-bottom: 0px;
-    
-}
-}
-
-.message-livre-dor .box-tendance .label{
-    font-size: 0.8rem;
-}
-.message-livre-dor .box-tendance .emoji{
-    font-size: 1rem;
-    margin-bottom: 0px;
-}
-@media (max-width: 768px) {
-.message-livre-dor .box-tendance .label{
-    font-size: 0.8rem;
-}
-.message-livre-dor .box-tendance .emoji{
-    font-size: 1rem;
     margin-bottom: 0px;
 }
 }
@@ -1335,7 +1029,6 @@ margin-bottom: 0px;
     position:static;
     z-index: 10; 
     margin-top:-30px;
-    
 }
 
 .containerPhoto .box-tendance h4{
@@ -1345,7 +1038,9 @@ margin-bottom: 0px;
     margin: 5px 5px;
 }
 
-
+/* ------------------------------------------------------------
+    Popup d'informations du classement
+    ------------------------------------------------------------ */
 .btn-info{
     width:24px;
     height:24px;
@@ -1356,8 +1051,8 @@ margin-bottom: 0px;
   text-align: center; 
   border-radius: 50%;
   margin-left: 20px;
-   
 }
+
 .titreClassement {
   display: flex;
   justify-content: center;
@@ -1365,6 +1060,7 @@ margin-bottom: 0px;
  align-items: center;
   text-align: center; 
 }
+
 #popupClassement {
     display: none;
     position: fixed;
@@ -1398,27 +1094,28 @@ margin-bottom: 0px;
 #popupClassement li {
     margin-bottom: 8px;
 }
+
 #fermerPopupClassement .formulaire-fermer {
   position: absolute;
     top: 0;
-    
 }
+
 #fermerPopupClassement {
   position: relative;
-    
 }
-.photo {
 
+.photo {
 width: 50%;
 height: auto;
 display: block;
 margin:0 auto;
 }
+
 .section-naissance {
 display: none;
 }
+
 #btnTriLivreDor {
-    
     width: 42px;
     height: 42px;
     background: none;
@@ -1438,6 +1135,7 @@ display: none;
 #btnTriLivreDor:hover {
     filter: brightness(1.05);
 }
+
 @media (max-width: 768px) {
     #btnTriLivreDor {
         width: 22px;

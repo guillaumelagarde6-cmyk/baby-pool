@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+    <!-- =====================================================
+         1. EN-TETE DU DOCUMENT
+         ===================================================== -->
     <head>
 
         <meta charset="UTF-8">
@@ -12,8 +15,14 @@
 
     </head>
 
+    <!-- =====================================================
+         2. CONTENU VISIBLE DE LA PAGE
+         ===================================================== -->
     <body>
 
+        <!-- -------------------------------------------------
+             En-tete et presentation du Baby Pool
+             ------------------------------------------------- -->
         <header class="hero">
 
             <div class="hero-content">
@@ -38,35 +47,25 @@
         </header>
 
 
-        <footer class="containerFooter">
-                                                <div class="onglets-container">
-                                                    <button
-                                                        id="ongletTendance"
-                                                        class="onglet-action">
+        <!-- -------------------------------------------------
+             Navigation entre les trois vues principales
+             ------------------------------------------------- -->
+        <main class="containerMain">
+            <div class="onglets-container">
+                <button id="ongletTendance" class="onglet-action">
+                    📊 Tendances
+                </button>
+                <button id="ongletClassement" class="onglet-action">
+                    🏆 Classement
+                </button>
+                <button id="ongletLivreDor" class="onglet-action">
+                    💕 Livre d'or
+                </button>
+            </div>
 
-                                                         📊 Tendances
-
-                                                    </button>
-                                                     <button
-                                                        id="ongletClassement"
-                                                        class="onglet-action">
-
-                                                        🏆 Classement
-
-                                                    </button>
-                                                    <button
-                                                        id="ongletLivreDor"
-                                                        class="onglet-action">
-
-                                                        💕 Livre d'or
-
-                                                    </button>
-
-                                                </div>
-
-            <!-- ===================== -->
-            <!-- TENDANCES -->
-            <!-- ===================== -->
+            <!-- =================================================
+                 3. VUE DES TENDANCES
+                 ================================================= -->
         
             <div id="tendances" class="card tendances">
                 <button
@@ -77,7 +76,7 @@
                 </button>
 
                 <h3 class="separateur-tendances">
-                📊 Les tendances en direct
+                    📊 Les tendances en direct
                 </h3>
 
                 <p class="tendance-intro">
@@ -103,7 +102,7 @@
                             </div>
 
                             <div id="tendancePrenom" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -116,7 +115,7 @@
                             </div>
 
                             <div id="tendanceHeure" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -129,7 +128,7 @@
                             </div>
 
                             <div id="tendancePoids" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -142,7 +141,7 @@
                             </div>
 
                             <div id="tendanceTaille" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -155,7 +154,7 @@
                             </div>
 
                             <div id="tendanceCheveux" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -168,7 +167,7 @@
                             </div>
 
                             <div id="tendanceRessemblance" class="valeur valeur-chargement">
-                                Chargement...
+                                <span class="valeur-contenu">Chargement...</span>
                             </div>
 
                         </div>
@@ -176,100 +175,170 @@
                 </div> <!-- tendancesContainer -->
             </div> <!-- tendances -->
        
-            <!-- LIVRE D'OR -->
-                <div
-                    id="containerLivreDor"
-                    class="card tendances">
+            <!-- =================================================
+                 4. VUE DU LIVRE D'OR
+                 ================================================= -->
+            <div id="containerLivreDor" class="card tendances">
 
-                    <h3>💕 Livre d'or 💕</h3>
+                <h3>💕 Livre d'or 💕</h3>
 
-                    <p class="tendance-intro">
-                        Merci à tous pour votre participation et vos messages pleins de tendresse 🎀
-                    </p>
-                    <div class="separateur2"></div>
-                    <button id="btnTriLivreDor" class="btn-tri">⬇️</button>
-                    <div id="listeLivreDor"></div>
+                <p class="tendance-intro">
+                    Merci à tous pour votre participation et vos messages pleins de tendresse 🎀
+                </p>
+                <div class="separateur2"></div>
+                <button id="btnTriLivreDor" class="btn-tri">⬇️</button>
+                <div id="listeLivreDor"></div>
 
-                </div>
-                 <!-- CLASSEMENT -->
-                <div
-                    id="containerClassement"
-                    class="card tendances">
+            </div>
 
-                    
-                    <div class="section-naissance">
-                        <h3 >👶 Notre petite princesse est arrivée !</h3>
+            <!-- =================================================
+                 5. VUE DU CLASSEMENT
+                 ================================================= -->
+            <div id="containerClassement" class="card tendances">
 
-                        <div class="tendances-grid">
+                <div class="section-naissance">
+                    <h3>👶 Notre petite princesse est arrivée !</h3>
 
-                            <div class="box-tendance">
-                                <div class="emoji">💖</div>
-                                <div class="label">Prénom..</div>            
-                            </div>
+                    <div class="tendances-grid">
 
-                            <div class="box-tendance">
-                                <div class="emoji">📅</div>
-                                <div class="label">Date..</div>           
-                            </div>
-
-                            <div class="box-tendance">
-                                <div class="emoji">⏰</div>
-                                <div class="label">Heure..</div>         
-                            </div>
-
-                            <div class="box-tendance">
-                                <div class="emoji">⚖️</div>
-                                <div class="label">Poids..</div>   
-                            </div>
-
-                            <div class="box-tendance">
-                                <div class="emoji">📏</div>
-                                <div class="label">Taille..</div>
-                            </div>
-
-                            <div class="box-tendance">
-                                <div class="emoji">🖤</div>
-                                <div class="label">Cheveux..</div>
-                            </div>
+                        <div class="box-tendance">
+                            <div class="emoji">💖</div>
+                            <div class="label">Prénom..</div>
                         </div>
-                        <div class="containerPhoto">
-                          
-                            <div class="box-tendance">
-                                <h4>Je ressemble le plus à</h4>
-                                <div class="label">...</div>
-                            </div>
-                           <h4>....</h4>
+
+                        <div class="box-tendance">
+                            <div class="emoji">📅</div>
+                            <div class="label">Date..</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">⏰</div>
+                            <div class="label">Heure..</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">⚖️</div>
+                            <div class="label">Poids..</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">📏</div>
+                            <div class="label">Taille..</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">🖤</div>
+                            <div class="label">Cheveux..</div>
                         </div>
                     </div>
-                    <div>
-                            <img src="cigogne.gif" alt="Cigogne" class="photo">
-                            </div>
-                    <h3 class="titreClassement">🏆 Classement 🏆 <button id="btnInfoClassement" class="btn-info">?</button>
-                    </h3>
-                    <p class="tendance-intro">
-                        Le classement sera disponible plus tard... 🎀
-                    </p>
-
-                    <div id="listeClassement">
-
+                    <div class="containerPhoto">
+                        <div class="box-tendance">
+                            <h4>Je ressemble le plus à</h4>
+                            <div class="label">...</div>
+                        </div>
+                        <h4>....</h4>
                     </div>
-
                 </div>
-        </footer>    
-    
+                <div>
+                    <img src="cigogne.gif" alt="Cigogne" class="photo">
+                </div>
+                <h3 class="titreClassement">
+                    🏆 Classement 🏆
+                    <button id="btnInfoClassement" class="btn-info">?</button>
+                </h3>
+                <p class="tendance-intro">
+                    Le classement sera disponible plus tard... 🎀
+                </p>
+
+            </div>
+        </main>
+
+        <!-- =================================================
+             MODELE HTML D'UNE CARTE DU LIVRE D'OR
+             Le JavaScript clone ce modele pour chaque message.
+             ================================================= -->
+        <template id="modeleMessageLivreDor">
+            <div class="message-livre-dor">
+                <div class="message-auteur">
+                    <span data-champ="auteur"></span>
+                    <div class="tendances-grid">
+                        <div class="boite-vote-message">
+                            <div class="emoji">💖</div>
+                            <div class="label" data-champ="prenom"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">📅</div>
+                            <div class="label" data-champ="date"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">⏰</div>
+                            <div class="label" data-champ="heure"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">⚖️</div>
+                            <div class="label" data-champ="poids"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">📏</div>
+                            <div class="label" data-champ="taille"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">💇</div>
+                            <div class="label" data-champ="cheveux"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timestamp" data-champ="timestamp"></div>
+
+                <div class="tendances-grid-phone">
+                    <div class="boite-vote-message">
+                        <div class="emoji">💖</div>
+                        <div class="label" data-champ="prenom"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">📅</div>
+                        <div class="label" data-champ="date"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">⏰</div>
+                        <div class="label" data-champ="heure"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">⚖️</div>
+                        <div class="label" data-champ="poids"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">📏</div>
+                        <div class="label" data-champ="taille"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">💇</div>
+                        <div class="label" data-champ="cheveux"></div>
+                    </div>
+                </div>
+
+                <div class="separateur"></div>
+                <div class="message-texte" data-champ="message"></div>
+            </div>
+        </template>
+
+        <!-- -------------------------------------------------
+             Signature du site
+             ------------------------------------------------- -->
         <div class="signature-site">
             © 2026 Guillaume Lagarde • Tous droits réservés • Baby Pool fait avec amour 🎀
         </div>
     
-        <!-- ===================== -->
-        <!-- POPUP FORMULAIRE -->
-        <!-- ===================== -->
+        <!-- =================================================
+             6. POPUP DU FORMULAIRE DE PARTICIPATION
+             ================================================= -->
 
-     <div id="popupFormulaire" class="formulaire-overlay">
+        <div id="popupFormulaire" class="formulaire-overlay">
 
-        <div class="formulaire-popup">
+            <div class="formulaire-popup">
 
-            <div class="formulaire-popup-header">
+                <div class="formulaire-popup-header">
 
                 <h3>🎀 Mon pronostic 🎀</h3>
 
@@ -285,10 +354,11 @@
 
             </div>
 
-            <div class="formulaire-popup-body">
+                <div class="formulaire-popup-body">
 
                 <form id="babyForm">
 
+                    <!-- Identite du participant et prenom imagine -->
                     <label>Je suis</label>
 
                     <input
@@ -305,6 +375,7 @@
                         placeholder="Mon idée..."
                         required>
 
+                    <!-- Date et heure de naissance pronostiquees -->
                     <div class="row">
 
                         <div>
@@ -331,6 +402,7 @@
 
                     </div>
 
+                    <!-- Poids et taille pronostiques -->
                     <div class="row">
 
                         <div>
@@ -359,6 +431,7 @@
 
                     </div>
 
+                    <!-- Cheveux et ressemblance -->
                     <div class="row">
 
                         <div>
@@ -396,6 +469,7 @@
 
                     </div>
                    
+                    <!-- Message souvenir et indicateur de longueur -->
                     <label>Un petit mot pour bébé 💕</label>
                         <textarea
                         id="motBebe"
@@ -415,16 +489,17 @@
                             ✨ Envoyer ✨
                         </button>
 
-                </form>
+                    </form>
+
+                </div>
 
             </div>
 
         </div>
 
-     </div>
-        <!-- ===================== -->
-        <!-- POPUP -->
-        <!-- ===================== -->
+        <!-- =================================================
+             7. POPUP DE NOTIFICATION
+             ================================================= -->
 
         <div id="popup" class="popup-overlay">
 
@@ -455,81 +530,87 @@
 
         </div>
 
-<div id="popupCodeLivreDor" class="popup-overlay">
+        <!-- =================================================
+             8. POPUP DE DEVERROUILLAGE DU LIVRE D'OR
+             ================================================= -->
+        <div id="popupCodeLivreDor" class="popup-overlay">
 
-    <div class="popup-content">
-        <div class="formulaire-popup-header">
+            <div class="popup-content">
+                <div class="formulaire-popup-header">
 
-            <h3>💕 Livre d'or 💕</h3>
+                    <h3>💕 Livre d'or 💕</h3>
 
-            <button
-                type="button"
-                id="fermerLivreDor"
-                class="formulaire-fermer">
+                    <button
+                        type="button"
+                        id="fermerLivreDor"
+                        class="formulaire-fermer">
 
-                x
+                        x
 
-            </button>
+                    </button>
+
+                </div>
+
+                <p>
+                    Le livre d'or sera disponible plus tard...
+                </p>
+        
+                <input
+                    type="password"
+                    id="codeLivreDor"
+                    placeholder="Mot de passe"
+                    inputmode="numeric"
+                    pattern="[0-9]*">
+
+                <button id="validerCodeLivreDor">
+
+                    Accéder
+
+                </button>
+
+            </div>
 
         </div>
 
-            <p>
-                Le livre d'or sera disponible plus tard...
-            </p>
-        
-            <input
-                type="password"
-                id="codeLivreDor"
-                placeholder="Mot de passe"
-                inputmode="numeric"
-                pattern="[0-9]*">
+        <!-- =================================================
+             9. POPUP D'INFORMATIONS DU CLASSEMENT
+             ================================================= -->
 
-            <button
-                id="validerCodeLivreDor">
+        <div id="popupClassement" class="popup-overlay">
 
-                Accéder
+            <div class="popup-contenu">
 
-            </button>
+                <button id="fermerPopupClassement" class="formulaire-fermer">
+                    ✕
+                </button>
 
-    </div>
+                <h2>🏆 Règles du classement</h2>
 
-</div>
-<!--POP UP infos classement-->
+                <p>
+                    Les points sont attribués selon la proximité entre votre
+                    pronostic et les données réelles de naissance.
+                </p>
 
-<div id="popupClassement" class="popup-overlay">
+                <ul>
+                    <li>💖 Prénom exact : <strong>50 points</strong></li>
+                    <li>📅 Date de naissance : <strong>jusq'à 20 points</strong></li>
+                    <li>⏰ Heure de naissance : <strong>jusqu'à 50 points</strong></li>
+                    <li>⚖️ Poids : <strong>jusqu'à 50 points</strong></li>
+                    <li>📏 Taille : <strong>jusqu'à 40 points</strong></li>
+                    <li>🖤 Cheveux : <strong>jusqu'à 20 points</strong></li>
+                </ul>
 
-    <div class="popup-contenu">
+                <p>
+                    🤝 En cas d'égalité, les participants sont départagés
+                    selon la précision de leur heure, puis du poids et enfin
+                    de la taille.
+                </p>
 
-        <button id="fermerPopupClassement" class="formulaire-fermer">
-            ✕
-        </button>
+            </div>
 
-        <h2>🏆 Règles du classement</h2>
+        </div>
 
-        <p>
-            Les points sont attribués selon la proximité entre votre
-            pronostic et les données réelles de naissance.
-        </p>
-
-        <ul>
-            <li>💖 Prénom exact : <strong>50 points</strong></li>
-            <li>📅 Date de naissance : <strong>jusq'à 20 points</strong></li>
-            <li>⏰ Heure de naissance : <strong>jusqu'à 50 points</strong></li>
-            <li>⚖️ Poids : <strong>jusqu'à 50 points</strong></li>
-            <li>📏 Taille : <strong>jusqu'à 40 points</strong></li>
-            <li>🖤 Cheveux : <strong>jusqu'à 20 points</strong></li>
-        </ul>
-
-        <p>
-            🤝 En cas d'égalité, les participants sont départagés
-            selon la précision de leur heure, puis du poids et enfin
-            de la taille.
-        </p>
-
-    </div>
-
-</div>
-
+        <!-- Le JavaScript est charge apres le HTML pour que les elements existent. -->
         <script src="script.js"></script>
 
     </body>
