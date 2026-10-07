@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <!-- =====================================================
+         1. EN-TETE DU DOCUMENT
+         ===================================================== -->
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Pronostics Bébé n°2 • Famille Lagarde 🎀</title>
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <!-- =====================================================
+         2. CONTENU VISIBLE DE LA PAGE
+         ===================================================== -->
+    <body>
+
+        <!-- -------------------------------------------------
+             En-tete et presentation du Baby Pool
+             ------------------------------------------------- -->
+        <header class="hero">
+
+            <div class="hero-content">
+
+                <h1>✨ ⭐  🎀 Baby Pool 🎀  ⭐ ✨</h1>
+
+                <h2>
+                    La petite sœur de Léandre arrive bientôt...
+                </h2>
+
+                <p>
+                    Qui trouvera la bonne date, le bon prénom,
+                    le bon poids et la bonne taille ?
+                </p>
+
+                <div class="cadeaux">
+                    🏆 Les meilleurs pronostics recevront une petite surprise !
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- -------------------------------------------------
+             Navigation entre les trois vues principales
+             ------------------------------------------------- -->
+        <main class="containerMain">
+            <div class="onglets-container">
+            <button id="ongletAccueil" class="onglet-action">
+                <span class="onglet-emoji" aria-hidden="true">🏠</span>
+                <span>Accueil</span>
+            </button>
+            <button id="ongletClassement" class="onglet-action">
+                    <span class="onglet-emoji" aria-hidden="true">🏆</span>
+                    <span>Classement</span>
+                </button>
+                <button id="ongletHistorique" class="onglet-action">
+                    <span class="onglet-emoji" aria-hidden="true">🗓️</span>
+                    <span>L'aventure</span>
+                </button>
+                <button id="ongletLivreDor" class="onglet-action">
+                    <span class="onglet-emoji" aria-hidden="true">💕</span>
+                    <span>Livre d'or</span>
+                </button>
+                <button id="ongletTendance" class="onglet-action">
+                    <span class="onglet-emoji" aria-hidden="true">📊</span>
+                    <span>Tendances</span>
+                </button>
+            </div>
+
+            <button
+                type="button"
+                class="mobile-tab-backdrop"
+                id="mobileTabBackdrop"
+                aria-label="Fermer le menu des onglets"
+                hidden>
+            </button>
+            <div class="mobile-tab-menu" id="mobileTabMenu">
+                <div class="mobile-tab-options" id="mobileTabOptions" hidden>
+                    <button type="button" class="mobile-tab-option" data-onglet="ongletAccueil">
+                        <span aria-hidden="true">🏠</span>
+                        <span>Accueil</span>
+                    </button>
+                    <button type="button" class="mobile-tab-option" data-onglet="ongletClassement">
+                        <span aria-hidden="true">🏆</span>
+                        <span>Classement</span>
+                    </button>
+                    <button type="button" class="mobile-tab-option" data-onglet="ongletHistorique">
+                        <span aria-hidden="true">🗓️</span>
+                        <span>L'aventure</span>
+                    </button>
+                    <button type="button" class="mobile-tab-option" data-onglet="ongletLivreDor">
+                        <span aria-hidden="true">💕</span>
+                        <span>Livre d'or</span>
+                    </button>
+                    <button type="button" class="mobile-tab-option" data-onglet="ongletTendance">
+                        <span aria-hidden="true">📊</span>
+                        <span>Tendances</span>
+                    </button>
+                    <svg class="mobile-tab-arc" viewBox="0 0 220 220" aria-hidden="true">
+                        <path d="M 0 220 A 220 220 0 0 1 220 0"></path>
+                    </svg>
+                </div>
+                <button
+                    type="button"
+                    id="mobileTabToggle"
+                    class="mobile-tab-toggle"
+                    aria-label="Ouvrir le menu des onglets"
+                    aria-expanded="false"
+                    aria-controls="mobileTabOptions">
+                    <span class="mobile-tab-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- =================================================
+                 3. VUE DES TENDANCES
+                 ================================================= -->
+        
+            <div id="tendances" class="card tendances">
+                <button
+                    type="button"
+                    id="ouvrirFormulaire"
+                    class="bouton-participer">
+                    ✨ Je participe
+                </button>
+
+                <h3 class="separateur-tendances">
+                    📊 Les tendances en direct
+                </h3>
+
+                <p class="tendance-intro">
+                    Découvrez les tendances qui se dégagent au fur et à mesure des participations.
+                </p>
+
+                <div class="compteur-pronostics">
+
+                    <span id="nbPronostics">0</span>
+
+                    <small>participant(s)</small>
+
+                </div>
+                <div id="tendancesContainer">
+
+                    <div class="tendance-grid-2">
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">🎀</span>
+                                <span class="label">Prénom favori</span>
+                            </div>
+
+                            <div id="tendancePrenom" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">🕒</span>
+                                <span class="label">Moment favori</span>
+                            </div>
+
+                            <div id="tendanceHeure" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">⚖️</span>
+                                <span class="label">Poids favori</span>
+                            </div>
+
+                            <div id="tendancePoids" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">📏</span>
+                                <span class="label">Taille favorite</span>
+                            </div>
+
+                            <div id="tendanceTaille" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">💇</span>
+                                <span class="label">Cheveux favoris</span>
+                            </div>
+
+                            <div id="tendanceCheveux" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+
+                        <div class="tendance-mini">
+
+                            <div class="entete-tendance">
+                                <span class="emoji">👶</span>
+                                <span class="label">Ressemblance favorite</span>
+                            </div>
+
+                            <div id="tendanceRessemblance" class="valeur valeur-chargement">
+                                <span class="valeur-contenu">Chargement...</span>
+                            </div>
+
+                        </div>
+                    </div> <!-- tendance-grid-2 -->
+                </div> <!-- tendancesContainer -->
+            </div> <!-- tendances -->
+       
+            <!-- =================================================
+                 4. VUE DU LIVRE D'OR
+                 ================================================= -->
+            <div id="containerLivreDor" class="card tendances">
+
+                <h3>💕 Livre d'or 💕</h3>
+
+                <p class="tendance-intro">
+                    Merci à tous pour votre participation et vos messages pleins de tendresse 🎀
+                </p>
+                <div class="separateur2"></div>
+                <button id="btnTriLivreDor" class="btn-tri">⬇️</button>
+                <div id="listeLivreDor"></div>
+
+            </div>
+
+            <!-- =================================================
+                 5. VUE D'ACCUEIL
+                 ================================================= -->
+            <div id="containerAccueil" class="card tendances verrouille">
+                <div class="section-naissance">
+                    <h3>👑 Bienvenue 👑</br>petite princesse</h3>
+
+                    <div class="tendances-grid">
+
+                        <div class="box-tendance">
+                            <div class="emoji">💖</div>
+                            <div class="label">Charlie</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">📅</div>
+                            <div class="label">07/10/2026</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">⏰</div>
+                            <div class="label">17h20</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">⚖️</div>
+                            <div class="label">4,360 kg</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">📏</div>
+                            <div class="label">50 cm</div>
+                        </div>
+
+                        <div class="box-tendance">
+                            <div class="emoji">🖤</div>
+                            <div class="label">Noirs</div>
+                        </div>
+                    </div>
+                    <div class="containerPhoto">
+                        <div class="box-tendance">
+                            <h4 class="margereduite">Je ressemble le plus à</h4>
+                            <div class="label">👩 Maman !</div>
+                        </div>
+                        <div class="photobebe"><img src="images/IMG_3529.jpg" alt="coucou"></div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 6. VUE DU CLASSEMENT
+                 ================================================= -->
+            <div id="containerClassement" class="card tendances">
+                <h3 class="titreClassement">
+                    🏆 Classement 🏆
+                    <button id="btnInfoClassement" class="btn-info">?</button>
+                </h3>
+                <p class="tendance-intro">
+                    🍾 Et le grand gagnant est ...
+                </p>
+                <section class="classement-final">
+
+                    <div class="podium">
+                        <div class="podium-card or">
+                            <div class="couronne">👑</div>
+                            <div class="joueur">Tonton Guillaume</div>
+                            <div class="score">120</div>
+                            <div class="label">points</div>
+                        </div>
+
+                        <div class="podium-card argent">
+                            <div class="couronne">🥈</div>
+                            <div class="joueur">Tonton Nico</div>
+                            <div class="score">110</div>
+                            <div class="label">points</div>
+                        </div>
+
+                        <div class="podium-card bronze">
+                            <div class="couronne">🥉</div>
+                            <div class="joueur">Parrain</div>
+                            <div class="score">110</div>
+                            <div class="label">points</div>
+                        </div>
+
+                    </div>
+
+                    <div class="tableau-classement">
+
+                        <div class="ligne entete">
+                            <span>🏆 Rang final</span>
+                            <span>👤 Joueur</span>
+                            <span>⭐ Score total</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>1</span>
+                            <span>Tonton Guillaume</span>
+                            <span>120</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>2</span>
+                            <span>Tonton Nico</span>
+                            <span>110</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>3</span>
+                            <span>Parrain</span>
+                            <span>110</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>4</span>
+                            <span>Julien</span>
+                            <span>100</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>5</span>
+                            <span>Grand mère Séverine</span>
+                            <span>95</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>6</span>
+                            <span>Papi Did</span>
+                            <span>85</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>7</span>
+                            <span>Tata Anastasiia</span>
+                            <span>85</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>8</span>
+                            <span>Tata Cel</span>
+                            <span>80</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>9</span>
+                            <span>Caro</span>
+                            <span>80</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>10</span>
+                            <span>Marraine 💗</span>
+                            <span>80</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>11</span>
+                            <span>Tonton Quichot</span>
+                            <span>75</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>12</span>
+                            <span>Tata Emil</span>
+                            <span>75</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>13</span>
+                            <span>Tata Elodie</span>
+                            <span>75</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>14</span>
+                            <span>Tata Sansan</span>
+                            <span>70</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>15</span>
+                            <span>Tata Jess</span>
+                            <span>60</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>16</span>
+                            <span>Laurent</span>
+                            <span>60</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>17</span>
+                            <span>Mamie Loute</span>
+                            <span>60</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>18</span>
+                            <span>Brigitte</span>
+                            <span>50</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>19</span>
+                            <span>Tata Nathalie</span>
+                            <span>50</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>20</span>
+                            <span>Benoit</span>
+                            <span>50</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>21</span>
+                            <span>Grande tata Chrissou</span>
+                            <span>40</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>22</span>
+                            <span>Papapa</span>
+                            <span>40</span>
+                        </div>
+
+                        <div class="ligne">
+                            <span>23</span>
+                            <span>Chrystelle</span>
+                            <span>35</span>
+                        </div>
+
+
+                        <!-- compléter avec les autres -->
+
+                    </div>
+
+                </section>
+            </div>
+
+             <!-- =================================================
+                 7. VUE HISTORIQUE
+                 ================================================= -->
+            <div id="containerHistorique" class="card tendances verrouille">
+
+                <div >
+                    <h3>👶 Chronologie de ta naissance</h3>
+                </div>
+                <div class="birth-timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date-container">
+                                <div class="timeline-date">Vendredi 2 octobre 2026</div>
+                        </div>
+                        <div class="timeline-dot">🏥</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">08h30</div>
+                            <div class="timeline-title">Arrivée à la maternité</div>
+                            <div class="timeline-text">
+                                Début d'une sacrée aventure ❤️
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4028.jpg" alt="Arrivée à la maternité">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">📟</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">08h50</div>
+                            <div class="timeline-title">Monitoring</div>
+                            <div class="timeline-text">
+                                Vérification que tout va bien avant le déclenchement.
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4030.jpg" alt="Monitoring">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🔄</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h00</div>
+                            <div class="timeline-title">Changement de plan</div>
+                            <div class="timeline-text">
+                                Le médecin s'est "trompé" dans son calcul, il va falloir attendre lundi 😤 </br>
+                                Bon, alors go au resto 😋
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4032.jpg" alt="Monitoring">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="timeline-item">
+                        <div class="timeline-date-container">
+                            <div class="timeline-date">Lundi 5 octobre 2026</div>
+                        </div>
+                        <div class="timeline-dot">🏥</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">08h30</div>
+                            <div class="timeline-title">Arrivée à la maternité (x2)</div>
+                            <div class="timeline-text">
+                                Cette fois c'est la bonne ! 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/Designer.png" alt="illustration">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">📟</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">08h50</div>
+                            <div class="timeline-title">Monitoring</div>
+                            <div class="timeline-text">
+                                Un col à 2, un dernier monito et c'est parti !
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4134.jpg" alt="Monitoring">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🛏️</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">10h30</div>
+                            <div class="timeline-title">Installation en chambre</div>
+                            <div class="timeline-text">
+                                Tout est au vert, on s'intalle et début de la prise de médicaments pour déclencher le travail.
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4136.jpg" alt="installation en chambre">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🤸</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">10h50</div>
+                            <div class="timeline-title">Un peu d'exercices</div>
+                            <div class="timeline-text">
+                                Tout est permis pour faire descendre bébé 😆
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4140.jpg" alt="exercices">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💊</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">11h37</div>
+                            <div class="timeline-title">2ème cachet pris</div>
+                            <div class="timeline-text">
+                                On attends, on attends... & on s'occupe comme on peut
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4143.jpg" alt="on a faim">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">😩</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h00</div>
+                            <div class="timeline-title">On a faim !</div>
+                            <div class="timeline-text">
+                                Vite vite vite la bouffe
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4145.jpg" alt="on a faim">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🍽️</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h02</div>
+                            <div class="timeline-title">Ahhh !</div>
+                            <div class="timeline-text">
+                                Pas un étoilé mais pas mauvais
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4147.jpg" alt="bouffe">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🧘</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h20</div>
+                            <div class="timeline-title">Instant digestion ?</div>
+                            <div class="timeline-text">
+                                Mais non, c'est pour aider bébé à descendre !
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4148.jpg" alt="aprèsbouffe">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💅</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h40</div>
+                            <div class="timeline-title">Un dernier brin de beauté</div>
+                            <div class="timeline-text">
+                                Autant profiter du temps libre
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4149.jpg" alt="beauté">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🐌</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">15h15</div>
+                            <div class="timeline-title">Le temps est long</div>
+                            <div class="timeline-text">
+                                Un deuxième monitoring de fait, quelques contractions mais pas de vrai travail. On attends, on attends...
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4151.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🫠</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">15h40</div>
+                            <div class="timeline-title">Maman commence à fatiguer</div>
+                            <div class="timeline-text">
+                              C'est fatiguant de rien faire...
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4153.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">😴</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">15h40</div>
+                            <div class="timeline-title">Très fatiguant...</div>
+                            <div class="timeline-text">
+                            
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4154.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💻</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">17h00</div>
+                            <div class="timeline-title">Papa, lui, s'occupe</div>
+                            <div class="timeline-text">
+                              Il me prépare un jolie site internet souvenir, mais ça ne fait pas avancer le travail 😆
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4155.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">📟</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">18h45</div>
+                            <div class="timeline-title">Rebelotte</div>
+                            <div class="timeline-text">
+                              6ème comprimé, 3ème monitoring... prochain monito à 22h00
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4156.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🐣</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">19h00</div>
+                            <div class="timeline-title">Mais... c'est THE salle de naissance !</div>
+                            <div class="timeline-text">
+                              Papa à tout de suite reconnu que c'est la salle où mon grand frère est né 😛
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4159.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🍫</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">20h00</div>
+                            <div class="timeline-title">Quelques gourmandises</div>
+                            <div class="timeline-text">
+                              Mhmmm que de bonnes choses pour me donner envie de pointer le bout de mon nez 🤤
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4165.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🤌</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">22h50</div>
+                            <div class="timeline-title">Encore et toujours</div>
+                            <div class="timeline-text">
+                              Et un de plus, 5ème monitoring, 7ème comprimé...
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4167.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🌙</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">23h40</div>
+                            <div class="timeline-title">Un petit dodo</div>
+                            <div class="timeline-text">
+                              On se repose un pe avant le prochain monitoring à 1h00 du matin...
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4171.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date-container">
+                                <div class="timeline-date"> Mardi 6 octobre 2026</div>
+                        </div>
+                        <div class="timeline-dot">🗿</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">01h00</div>
+                            <div class="timeline-title">Fin d'une journée épuisante</div>
+                            <div class="timeline-text">
+                              Dernier monito, dernier comprimé, affaire à suivre après un dodo bien mérité
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4172.jpg" alt="long">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🧓🏻</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">05h20</div>
+                            <div class="timeline-title">Papi & mamie à l'affût</div>
+                            <div class="timeline-text">
+                              '' Elle n'a toujours pas montrée le bout de son nez ? '' </br> 
+                              Non malheureusement 😭
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/papi_mamie.JPEG" alt="papimamie">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🥱</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">07h00</div>
+                            <div class="timeline-title">Pas de grasse mat ce matin !</div>
+                            <div class="timeline-text">
+                              On commence par le monito du matin et on attends de voir le médecin pour le programme de la journée...</br>
+                              Comprimés à nouveau ? / Perfusion d'ocytocine ? 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4174.jpg" alt="matin">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🥳</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">08h50</div>
+                            <div class="timeline-title">Bonne nouvelle !</div>
+                            <div class="timeline-text">
+                              Pas de comprimés aujourd'hui, on passe directement à la perfusion.</br>
+                              Bébé naîtra aujourd'hui ! 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4176.jpg" alt="matin">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🦄</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">09h20</div>
+                            <div class="timeline-title">Pegase</div>
+                            <div class="timeline-text">
+                              Décidemment, c'est un signe, à nouveau la salle de naissance de mon grand frère ! 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4178.jpg" alt="pegase">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💉</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">11h00</div>
+                            <div class="timeline-title">C'est mieux, mais long quand même</div>
+                            <div class="timeline-text">
+                              La perfusion d'ocytocine fait déjà plus effet que les comprimés, mais le temps est long quand même... </br>
+                              Papa et maman sont impatients ! 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4181.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot">❤️‍🩹</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">11h50</div>
+                            <div class="timeline-title">Des grosses contractions</div>
+                            <div class="timeline-text">
+                              Les contractions sont douloureuses, on programme la péridurale. </br>
+                              La sage femme propose de percer la poche des eaux prochainement pour accélérer le travail 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4182.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💉</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">12h30</div>
+                            <div class="timeline-title">Pose de la péridurale</div>
+                            <div class="timeline-text">
+                                La péridurale est posée, maman va pouvoir se reposer un peu. </br>
+                                pendant ce temps, papa va manger un bout
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4189.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">💪</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">13h35</div>
+                            <div class="timeline-title">Ca avance !</div>
+                            <div class="timeline-text">
+                                On est en bonne voie, le col est ouvert à 6 et la sage femme perce la poche des eaux.
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4193.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🛌</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">14h00</div>
+                            <div class="timeline-title">Une petite sieste</div>
+                            <div class="timeline-text">
+                                Maman se repose tant qu'elle le peut encore 
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4194.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🙆</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">15h00</div>
+                            <div class="timeline-title">Dernière ligne droite</div>
+                            <div class="timeline-text">
+                                Le col est effacé à 100%, tous les moyens sont bons pour aider bébé à descendre !
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4196.jpg" alt="ballon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🙆</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">15h00</div>
+                            <div class="timeline-title">Dernière ligne droite</div>
+                            <div class="timeline-text">
+                                Le col est effacé à 100%, tous les moyens sont bons pour aider bébé à descendre !
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4196.jpg" alt="position">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🧸</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">16h00</div>
+                            <div class="timeline-title">On est prêt !</div>
+                            <div class="timeline-text">
+                                Papa à préparé toutes mes affaires, mais je prends mon temps moi, j'ai encore droit à 1h au chaud
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4200.jpg" alt="affaires">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🧸</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">16h54</div>
+                            <div class="timeline-title">Interview inédit de maman</div>
+                            <div class="timeline-text">
+                                A quelques minutes du grand moment, papa embête encore maman
+                            </div>
+
+                             <div class="timeline-photos timeline-video">
+                                <video playsinline preload="metadata" aria-label="Lire la vidéo en grand">
+                                    <source src="images/vlog.MP4" type="video/mp4">
+                                    Votre navigateur ne peut pas lire cette vidéo.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🔄</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">17h00</div>
+                            <div class="timeline-loader">
+                                <img src="images/chargement.gif" alt="Chargement en cours">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">🤱</div>
+
+                        <div class="timeline-card">
+                            <div class="historique-horaire">17h20</div>
+                            <div class="timeline-title">Bonjour, je m'appelle Charlie 💫</div>
+                            <div class="timeline-text">
+                              Mon premier contact avec maman 🩷  
+                            </div>
+
+                            <div class="timeline-photos">
+                                <img src="images/IMG_4204.jpg" alt="affaires">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">📸</div>
+
+                        <div class="timeline-card">
+                            <div class="timeline-title">Cute Moments</div>
+                            <div class="photo-grid">
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_4236.jpg" alt="photo3">
+                                </div>
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_4296.jpg" alt="photo3">
+                                </div>
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_3529.jpg" alt="photo1">
+                                </div>
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_3535.jpg" alt="photo2">
+                                </div>
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_3569.jpg" alt="photo3">
+                                </div>
+                                <div class="timeline-photos">
+                                    <img src="images/IMG_3574.jpg" alt="photo3">
+                                </div>
+                                
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </main>
+
+        <!-- =================================================
+             MODELE HTML D'UNE CARTE DU LIVRE D'OR
+             Le JavaScript clone ce modele pour chaque message.
+             ================================================= -->
+        <template id="modeleMessageLivreDor">
+            <div class="message-livre-dor">
+                <div class="message-auteur">
+                    <span data-champ="auteur"></span>
+                    <div class="tendances-grid">
+                        <div class="boite-vote-message">
+                            <div class="emoji">💖</div>
+                            <div class="label" data-champ="prenom"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">📅</div>
+                            <div class="label" data-champ="date"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">⏰</div>
+                            <div class="label" data-champ="heure"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">⚖️</div>
+                            <div class="label" data-champ="poids"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">📏</div>
+                            <div class="label" data-champ="taille"></div>
+                        </div>
+                        <div class="boite-vote-message">
+                            <div class="emoji">💇</div>
+                            <div class="label" data-champ="cheveux"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timestamp" data-champ="timestamp"></div>
+
+                <div class="tendances-grid-phone">
+                    <div class="boite-vote-message">
+                        <div class="emoji">💖</div>
+                        <div class="label" data-champ="prenom"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">📅</div>
+                        <div class="label" data-champ="date"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">⏰</div>
+                        <div class="label" data-champ="heure"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">⚖️</div>
+                        <div class="label" data-champ="poids"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">📏</div>
+                        <div class="label" data-champ="taille"></div>
+                    </div>
+                    <div class="boite-vote-message">
+                        <div class="emoji">💇</div>
+                        <div class="label" data-champ="cheveux"></div>
+                    </div>
+                </div>
+
+                <div class="separateur"></div>
+                <div class="message-texte" data-champ="message"></div>
+            </div>
+        </template>
+
+        <!-- -------------------------------------------------
+             Signature du site
+             ------------------------------------------------- -->
+        <div class="signature-site">
+            © 2026 Guillaume Lagarde • Tous droits réservés • Baby Pool fait avec amour 🎀
+        </div>
+    
+        <!-- =================================================
+             6. POPUP DU FORMULAIRE DE PARTICIPATION
+             ================================================= -->
+
+        <div id="popupFormulaire" class="formulaire-overlay">
+
+            <div class="formulaire-popup">
+
+                <div class="formulaire-popup-header">
+
+                <h3>🎀 Mon pronostic 🎀</h3>
+
+                <button
+                    type="button"
+                    id="fermerFormulaire"
+                    class="formulaire-fermer"
+                    aria-label="Fermer le formulaire">
+
+                    ×
+
+                </button>
+
+            </div>
+
+                <div class="formulaire-popup-body">
+
+                <form id="babyForm">
+
+                    <!-- Identite du participant et prenom imagine -->
+                    <label>Je suis</label>
+
+                    <input
+                        type="text"
+                        id="joueur"
+                        placeholder="Ex : Tata Sophie"
+                        required>
+
+                    <label>Je pense que son prénom sera</label>
+
+                    <input
+                        type="text"
+                        id="prenom"
+                        placeholder="Mon idée..."
+                        required>
+
+                    <!-- Date et heure de naissance pronostiquees -->
+                    <div class="row">
+
+                        <div>
+
+                            <label>Date de naissance</label>
+
+                            <input
+                                type="date"
+                                id="date"
+                                required>
+
+                        </div>
+
+                        <div>
+
+                            <label>Heure</label>
+
+                            <input
+                                type="time"
+                                id="heure"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Poids et taille pronostiques -->
+                    <div class="row">
+
+                        <div>
+
+                            <label>Poids (g)</label>
+
+                            <input
+                                type="number"
+                                id="poids"
+                                placeholder="3400"
+                                required>
+
+                        </div>
+
+                        <div>
+
+                            <label>Taille (cm)</label>
+
+                            <input
+                                type="number"
+                                id="taille"
+                                placeholder="50"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Cheveux et ressemblance -->
+                    <div class="row">
+
+                        <div>
+
+                            <label>Couleur des cheveux</label>
+
+                            <select id="cheveux" required>
+
+                                <option value="">Choisir...</option>
+                                <option>Blond</option>
+                                <option>Brun</option>
+                                <option>Noir</option>
+                                <option>Roux</option>
+                                <option>Pas de cheveux 😆</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label>Ressemblance</label>
+
+                            <select id="ressemblance" required>
+
+                                <option value="">Choisir...</option>
+                                <option>Plutôt Papa 👨</option>
+                                <option>Plutôt Maman 👩</option>
+                                <option>50 / 50 🤝</option>
+                                <option>Comme Léandre 👦</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+                   
+                    <!-- Message souvenir et indicateur de longueur -->
+                    <label>Un petit mot pour bébé 💕</label>
+                        <textarea
+                        id="motBebe"
+                        maxlength="300"
+                        placeholder="Les messages seront ajoutés au livre d'or souvenir de bébé 💕"></textarea>
+                    <div id="compteurMotBebe" class="compteur-mot-bebe">
+                        0 / 300 caractères
+                    </div>  
+                  
+                     <div id="loaderFormulaire" class="loader-formulaire">
+
+                        <div class="spinner"></div>
+
+                        <span>Enregistrement du pronostic...</span>
+
+                    </div>
+                        <button type="submit" disabled>
+                            ✨ Envoyer ✨
+                        </button>
+
+                        <div class="tendance-intro">
+                        Les pronostics sont fermés !
+                        </div> 
+                    </form>
+                     
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             7. POPUP DE NOTIFICATION
+             ================================================= -->
+
+        <div id="popup" class="popup-overlay">
+
+            <div class="popup-content">
+
+                <div id="popupIcon" class="popup-icon">
+                    ✅
+                </div>
+
+                <h3 id="popupTitle">
+                    Succès
+                </h3>
+
+                <p id="popupMessage">
+                    Votre pronostic a bien été enregistré.
+                </p>
+
+                <button
+                    type="button"
+                    id="popupClose"
+                    class="popup-button">
+
+                    Fermer
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             8. POPUP DE DEVERROUILLAGE DU LIVRE D'OR
+             ================================================= -->
+        <div id="popupCodeLivreDor" class="popup-overlay">
+
+            <div class="popup-content">
+                <div class="formulaire-popup-header">
+
+                    <h3>💕 Livre d'or 💕</h3>
+
+                    <button
+                        type="button"
+                        id="fermerLivreDor"
+                        class="formulaire-fermer">
+
+                        x
+
+                    </button>
+
+                </div>
+
+                <p>
+                    Le livre d'or sera disponible plus tard...
+                </p>
+        
+                <input
+                    type="password"
+                    id="codeLivreDor"
+                    placeholder="Mot de passe"
+                    inputmode="numeric"
+                    pattern="[0-9]*">
+
+                <button id="validerCodeLivreDor">
+
+                    Accéder
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================
+             9. POPUP D'INFORMATIONS DU CLASSEMENT
+             ================================================= -->
+
+        <div id="popupClassement" class="popup-overlay">
+
+            <div class="popup-contenu">
+
+                <button id="fermerPopupClassement" class="formulaire-fermer">
+                    ✕
+                </button>
+
+                <h2>🏆 Règles du classement</h2>
+
+                <p>
+                    Les points sont attribués selon la proximité entre votre
+                    pronostic et les données réelles de naissance.
+                </p>
+
+                <ul>
+                    <li>💖 Prénom exact : <strong>50 points</strong></li>
+                    <li>📅 Date de naissance : <strong>jusq'à 20 points</strong></li>
+                    <li>⏰ Heure de naissance : <strong>jusqu'à 50 points</strong></li>
+                    <li>⚖️ Poids : <strong>jusqu'à 50 points</strong></li>
+                    <li>📏 Taille : <strong>jusqu'à 40 points</strong></li>
+                    <li>🖤 Cheveux : <strong>jusqu'à 20 points</strong></li>
+                </ul>
+
+                <p>
+                    🤝 En cas d'égalité, les participants sont départagés
+                    selon la précision de leur heure, puis du poids et enfin
+                    de la taille.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div
+            id="popupPhotoHistorique"
+            class="popup-overlay popup-photo-historique"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Photo ou vidéo de l'historique">
+            <button
+                type="button"
+                id="fermerPopupPhotoHistorique"
+                class="popup-photo-fermer"
+                aria-label="Fermer la photo ou la vidéo">
+                ✕
+            </button>
+            <img id="imagePopupHistorique" src="" alt="">
+            <video id="videoPopupHistorique" controls playsinline preload="metadata"></video>
+        </div>
+
+        <!-- Le JavaScript est charge apres le HTML pour que les elements existent. -->
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
